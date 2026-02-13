@@ -1,18 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YSR Hameed - Full Stack Developer</title>
-    
+    <meta name="description"
+        content="Yasir Hameed - Professional Full Stack Developer specializing in React, Node.js, JavaScript, and modern web technologies. View my portfolio, projects, and hire me for your next web development project.">
+    <meta name="keywords"
+        content="Yasir Hameed, Full Stack Developer, web developer, React developer, Node.js developer, JavaScript developer, frontend developer, backend developer, MERN stack developer, portfolio website, hire web developer, freelance developer, React portfolio, Node.js portfolio, JavaScript expert, modern web development, responsive web design, API development, database design, Yasir Hameed portfolio, Full Stack Developer, professional web developer, React.js developer, Node.js backend developer, JavaScript programmer, web application developer, custom web development, Yasir Hameed GitHub, Yasir Hameed LinkedIn">
+    <meta name="author" content="Yasir Hameed">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+    <meta name="revisit-after" content="7 days">
+    <meta name="theme-color" content="#00F5FF">
+    <meta name="msapplication-TileColor" content="#00F5FF">
+    <meta name="application-name" content="Yasir Hameed Portfolio">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://ysr-hameed.github.io/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ysr-hameed.github.io/">
+    <meta property="og:title" content="Yasir Hameed - Full Stack Developer">
+    <meta property="og:description"
+        content="Professional Full Stack Developer specializing in React, Node.js, and modern web technologies. View my portfolio and projects.">
+    <meta property="og:image" content="https://ysr-hameed.github.io/favicon.svg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://ysr-hameed.github.io/">
+    <meta property="twitter:title" content="Yasir Hameed - Full Stack Developer">
+    <meta property="twitter:description"
+        content="Professional Full Stack Developer specializing in React, Node.js, and modern web technologies. View my portfolio and projects.">
+    <meta property="twitter:image" content="https://ysr-hameed.github.io/favicon.svg">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Yasir Hameed",
+      "jobTitle": "Full Stack Developer",
+      "url": "https://ysr-hameed.github.io/",
+      "sameAs": [
+        "https://github.com/ysr-hameed",
+        "https://www.linkedin.com/in/yasir-hameed-59b70b36b",
+        "https://instagram.com/ysr_hameed"
+      ],
+      "knowsAbout": [
+        "JavaScript",
+        "React",
+        "Node.js",
+        "Full Stack Development",
+        "Web Development",
+        "Frontend Development",
+        "Backend Development",
+        "MERN Stack"
+      ],
+      "description": "Professional Full Stack Developer specializing in modern web technologies including React, Node.js, and JavaScript."
+    }
+    </script>
+
+    <title>Yasir Hameed | Full Stack Developer | React Node.js Portfolio</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <link rel="manifest" href="manifest.json">
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
+
+    <!-- EmailJS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Manrope:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Manrope:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+
     <style>
         * {
             margin: 0;
@@ -31,6 +100,27 @@
             --text-muted: #9CA3AF;
             --success: #10B981;
             --danger: #EF4444;
+            --nav-bg: rgba(10, 10, 15, 0.8);
+            --nav-bg-scrolled: rgba(10, 10, 15, 0.95);
+            --nav-border: rgba(255, 255, 255, 0.05);
+            --hover-bg: rgba(255, 255, 255, 0.05);
+        }
+
+        .light-theme {
+            --primary: #2563EB;
+            --secondary: #7C3AED;
+            --accent: #F59E0B;
+            --bg-dark: #FFFFFF;
+            --bg-card: #F8FAFC;
+            --bg-card-hover: #E2E8F0;
+            --text: #1E293B;
+            --text-muted: #64748B;
+            --success: #10B981;
+            --danger: #EF4444;
+            --nav-bg: rgba(255, 255, 255, 0.9);
+            --nav-bg-scrolled: rgba(255, 255, 255, 0.95);
+            --nav-border: rgba(0, 0, 0, 0.1);
+            --hover-bg: rgba(0, 0, 0, 0.05);
         }
 
         html {
@@ -75,10 +165,23 @@
         }
 
         @keyframes float-particle {
-            0%, 100% { transform: translate(0, 0); }
-            25% { transform: translate(100px, -100px); }
-            50% { transform: translate(-50px, -200px); }
-            75% { transform: translate(-100px, -100px); }
+
+            0%,
+            100% {
+                transform: translate(0, 0);
+            }
+
+            25% {
+                transform: translate(100px, -100px);
+            }
+
+            50% {
+                transform: translate(-50px, -200px);
+            }
+
+            75% {
+                transform: translate(-100px, -100px);
+            }
         }
 
         /* Navigation */
@@ -88,9 +191,15 @@
             left: 0;
             right: 0;
             z-index: 1000;
-            background: rgba(10, 10, 15, 0.8);
+            background: var(--nav-bg);
             backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid var(--nav-border);
+            transition: background 0.3s;
+        }
+
+        nav.scrolled {
+            background: var(--nav-bg-scrolled);
+            backdrop-filter: blur(25px);
         }
 
         .nav-container {
@@ -101,13 +210,19 @@
         }
 
         .logo {
-            font-family: 'Archivo Black', sans-serif;
-            font-size: clamp(24px, 4vw, 32px);
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: -2px;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo svg {
+            width: 40px;
+            height: 40px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover svg {
+            transform: scale(1.05);
         }
 
         .nav-links {
@@ -123,7 +238,6 @@
             font-size: clamp(13px, 2vw, 15px);
             position: relative;
             transition: color 0.3s;
-            text-transform: uppercase;
             letter-spacing: 1px;
         }
 
@@ -151,10 +265,25 @@
         }
 
         .menu-toggle span {
-            width: 25px;
+            width: 20px;
             height: 2px;
             background: var(--text);
             transition: all 0.3s;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 20px;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .theme-toggle:hover {
+            background: var(--hover-bg);
         }
 
         /* Hero Section */
@@ -162,7 +291,7 @@
             min-height: 100vh;
             display: flex;
             align-items: center;
-            padding: 100px 0 50px;
+            padding: 120px 0 50px;
             position: relative;
             z-index: 1;
         }
@@ -204,21 +333,18 @@
 
         .hero h1 {
             font-family: 'Archivo Black', sans-serif;
-            font-size: clamp(40px, 8vw, 90px);
+            font-size: clamp(40px, 8vw, 70px);
             line-height: 1.1;
             margin-bottom: 20px;
-            letter-spacing: -2px;
+            letter-spacing: -1px;
         }
 
         .gradient-text {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--primary);
         }
 
         .hero p {
-            font-size: clamp(16px, 2.5vw, 20px);
+            font-size: clamp(16px, 2.5vw, 18px);
             color: var(--text-muted);
             max-width: 600px;
             margin-bottom: 30px;
@@ -248,7 +374,7 @@
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: var(--primary);
             color: var(--bg-dark);
             box-shadow: 0 10px 30px rgba(0, 245, 255, 0.3);
         }
@@ -291,7 +417,7 @@
 
         .stat-card h3 {
             font-family: 'Archivo Black', sans-serif;
-            font-size: clamp(32px, 5vw, 48px);
+            font-size: clamp(32px, 5vw, 40px);
             color: var(--primary);
             margin-bottom: 5px;
         }
@@ -301,6 +427,36 @@
             color: var(--text-muted);
             text-transform: uppercase;
             letter-spacing: 1px;
+        }
+
+        .hero-social {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            margin-bottom: 20px;
+        }
+
+        .hero-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 18px;
+        }
+
+        .hero-social a:hover {
+            background: var(--primary);
+            color: var(--bg-dark);
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 245, 255, 0.3);
         }
 
         /* About Section */
@@ -361,7 +517,7 @@
             left: 0;
             width: 100%;
             height: 3px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            background: var(--primary);
         }
 
         .about-card:hover {
@@ -374,7 +530,8 @@
             width: 60px;
             height: 60px;
             border-radius: 16px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: var(--primary);
+            color: var(--bg-dark);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -395,20 +552,23 @@
 
         /* Skills Grid */
         .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            display: flex;
+            flex-wrap: wrap;
             gap: 15px;
+            justify-content: center;
         }
 
         .skill-item {
             background: var(--bg-card);
             border: 1px solid rgba(255, 255, 255, 0.05);
             border-radius: 16px;
-            padding: 24px;
+            padding: 18px;
             text-align: center;
             transition: all 0.3s;
             cursor: pointer;
+            min-width: 120px;
         }
+
 
         .skill-item:hover {
             border-color: var(--primary);
@@ -417,12 +577,9 @@
         }
 
         .skill-item i {
-            font-size: 36px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 12px;
+            font-size: 28px;
+            color: var(--primary);
+            margin-bottom: 8px;
             display: block;
         }
 
@@ -430,6 +587,7 @@
             font-size: 14px;
             font-weight: 700;
             margin-bottom: 4px;
+            word-break: break-word;
         }
 
         .skill-item p {
@@ -437,6 +595,14 @@
             color: var(--text-muted);
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            word-break: break-word;
+        }
+
+        .skill-item.full-width {
+            grid-column: 1 / -1;
+            text-align: center;
+            background: linear-gradient(135deg, var(--bg-card) 0%, rgba(0, 245, 255, 0.1) 100%);
+            border: 2px solid rgba(0, 245, 255, 0.3);
         }
 
         /* Projects Section */
@@ -444,7 +610,6 @@
             padding: 100px 0;
             position: relative;
             z-index: 1;
-            background: linear-gradient(180deg, transparent 0%, rgba(124, 58, 237, 0.03) 100%);
         }
 
         .projects-grid {
@@ -470,7 +635,7 @@
 
         .project-image {
             height: 200px;
-            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            background: var(--primary);
             position: relative;
             overflow: hidden;
             display: flex;
@@ -480,7 +645,7 @@
 
         .project-image i {
             font-size: 64px;
-            color: white;
+            color: var(--bg-dark);
             z-index: 2;
         }
 
@@ -491,23 +656,29 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: repeating-linear-gradient(
-                45deg,
-                transparent,
-                transparent 20px,
-                rgba(255, 255, 255, 0.05) 20px,
-                rgba(255, 255, 255, 0.05) 40px
-            );
+            background: repeating-linear-gradient(45deg,
+                    transparent,
+                    transparent 20px,
+                    rgba(255, 255, 255, 0.05) 20px,
+                    rgba(255, 255, 255, 0.05) 40px);
             animation: slide-pattern 30s linear infinite;
         }
 
         @keyframes slide-pattern {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(40px, 40px); }
+            0% {
+                transform: translate(0, 0);
+            }
+
+            100% {
+                transform: translate(40px, 40px);
+            }
         }
 
         .project-content {
             padding: 30px;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
 
         .project-header {
@@ -557,9 +728,10 @@
         }
 
         .project-links {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+            display: flex;
+            flex-direction: column;
             gap: 10px;
+            margin-top: auto;
         }
 
         .project-link {
@@ -588,13 +760,17 @@
         }
 
         .project-link.live {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: var(--primary);
             color: var(--bg-dark);
         }
 
         .project-link.live:hover {
             transform: scale(1.05);
             box-shadow: 0 10px 25px rgba(0, 245, 255, 0.4);
+        }
+
+        .project-link.full-width {
+            width: 100%;
         }
 
         /* Contact Section */
@@ -635,7 +811,8 @@
             width: 60px;
             height: 60px;
             border-radius: 16px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: var(--primary);
+            color: var(--bg-dark);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -722,7 +899,7 @@
         }
 
         .social-link:hover {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: var(--primary);
             color: var(--bg-dark);
             transform: translateY(-5px) rotate(10deg);
             border-color: transparent;
@@ -747,15 +924,31 @@
         .footer-logo {
             font-family: 'Archivo Black', sans-serif;
             font-size: 28px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--primary);
         }
 
         .footer-text {
             color: var(--text-muted);
             font-size: 14px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .footer-social a {
+            color: var(--text-muted);
+            font-size: 20px;
+            transition: all 0.3s;
+            padding: 8px;
+            border-radius: 8px;
+        }
+
+        .footer-social a:hover {
+            color: var(--primary);
+            transform: translateY(-2px);
         }
 
         /* Animations */
@@ -764,6 +957,7 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -771,9 +965,12 @@
         }
 
         @keyframes pulse-dot {
-            0%, 100% {
+
+            0%,
+            100% {
                 box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
             }
+
             50% {
                 box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
             }
@@ -822,6 +1019,10 @@
                 display: flex;
             }
 
+            .theme-toggle {
+                display: none;
+            }
+
             .menu-toggle.active span:nth-child(1) {
                 transform: rotate(45deg) translate(7px, 7px);
             }
@@ -835,7 +1036,7 @@
             }
 
             .hero {
-                padding: 80px 0 40px;
+                padding: 100px 0 40px;
             }
 
             .hero-buttons {
@@ -862,16 +1063,17 @@
             }
 
             .skills-grid {
-                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
                 gap: 12px;
             }
 
             .skill-item {
-                padding: 16px;
+                padding: 10px;
             }
 
             .skill-item i {
-                font-size: 28px;
+                font-size: 24px;
             }
 
             .projects-grid {
@@ -895,8 +1097,13 @@
 
         /* Loading Animation */
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
         body {
@@ -904,6 +1111,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Particles Background -->
     <div class="particles" id="particles"></div>
@@ -912,13 +1120,20 @@
     <nav>
         <div class="container">
             <div class="nav-container">
-                <div class="logo">YSR</div>
+                <a href="#home" class="logo">
+                    <svg width="40" height="40" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="32" height="32" rx="6" fill="#00F5FF" />
+                        <text x="16" y="22" font-family="Arial, sans-serif" font-size="16" font-weight="bold"
+                            text-anchor="middle" fill="#0A0A0F">YH</text>
+                    </svg>
+                </a>
                 <ul class="nav-links" id="navLinks">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#projects">Projects</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
+                <button class="theme-toggle" id="themeToggle" title="Toggle Theme"><i class="fas fa-moon"></i></button>
                 <div class="menu-toggle" id="menuToggle">
                     <span></span>
                     <span></span>
@@ -937,11 +1152,11 @@
                         <span>Available for work</span>
                     </div>
                     <h1>
-                        Hi, I'm <span class="gradient-text">YSR Hameed</span><br>
+                        Hi, I'm <span class="gradient-text">Yasir Hameed</span><br>
                         Full Stack Developer
                     </h1>
                     <p>
-                        I create exceptional digital experiences with modern web technologies. 
+                        I create exceptional digital experiences with modern web technologies.
                         Specializing in building scalable applications that users love.
                     </p>
                     <div class="hero-buttons">
@@ -952,17 +1167,34 @@
                             <i class="fas fa-envelope"></i> Contact Me
                         </a>
                     </div>
+                    <div class="hero-social">
+                        <a href="https://github.com/ysr-hameed" target="_blank" title="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://wa.me/919169636627" target="_blank" title="WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="https://in.linkedin.com/in/yasir-hameed-59b70b36b" target="_blank" title="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://instagram.com/ysr_hameed" target="_blank" title="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="mailto:ysr.hameed.yh@gmail.com" title="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
                     <div class="hero-stats">
                         <div class="stat-card">
-                            <h3>50+</h3>
+                            <h3>3+</h3>
                             <p>Projects</p>
                         </div>
                         <div class="stat-card">
-                            <h3>30+</h3>
-                            <p>Clients</p>
+                            <h3>1</h3>
+                            <p>Live Projects</p>
                         </div>
                         <div class="stat-card">
-                            <h3>3+</h3>
+                            <h3>4+</h3>
                             <p>Years Exp</p>
                         </div>
                         <div class="stat-card">
@@ -982,8 +1214,14 @@
                 <div class="section-label">WHO I AM</div>
                 <h2 class="section-title">About Me</h2>
                 <p class="section-description">
-                    Passionate developer with expertise in creating modern, scalable web applications 
-                    that deliver exceptional user experiences.
+                    I'm a full-stack web developer who loves building modern, fast, and reliable web applications.
+                    Over the years, I've worked with a variety of technologies and frameworks — from backend APIs to
+                    frontend interfaces — and I enjoy every part of the process.
+                    I don't stick to one stack. I've used Node.js, React, Python, Laravel, and many others depending on
+                    what fits best for the project.
+                    I also like using AI tools and APIs inside my apps to make them more efficient and smarter for
+                    users.
+                    For me, clean code, usability, and performance always come first.
                 </p>
             </div>
 
@@ -994,7 +1232,7 @@
                     </div>
                     <h3>Full Stack Development</h3>
                     <p>
-                        Expert in both frontend and backend technologies, creating end-to-end 
+                        Expert in both frontend and backend technologies, creating end-to-end
                         solutions with React, Node.js, and modern databases.
                     </p>
                 </div>
@@ -1004,7 +1242,7 @@
                     </div>
                     <h3>Responsive Design</h3>
                     <p>
-                        Building pixel-perfect, mobile-first interfaces that work seamlessly 
+                        Building pixel-perfect, mobile-first interfaces that work seamlessly
                         across all devices and screen sizes.
                     </p>
                 </div>
@@ -1014,8 +1252,56 @@
                     </div>
                     <h3>Performance Focused</h3>
                     <p>
-                        Optimizing applications for speed and efficiency, ensuring the best 
+                        Optimizing applications for speed and efficiency, ensuring the best
                         possible user experience and SEO rankings.
+                    </p>
+                </div>
+                <div class="about-card">
+                    <div class="about-card-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Client Collaboration</h3>
+                    <p>
+                        Working closely with clients to understand their needs and deliver
+                        tailored solutions that exceed expectations.
+                    </p>
+                </div>
+            </div>
+
+            <div class="section-header">
+                <div class="section-label">EDUCATION</div>
+                <h2 class="section-title">Academic Background</h2>
+            </div>
+
+            <div class="about-grid">
+                <div class="about-card">
+                    <div class="about-card-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Bachelor of Arts (BA)</h3>
+                    <p>
+                        Currently pursuing 2nd year, 3rd semester at TNPG College Tanda Ambedkar Nagar.
+                        Building a strong foundation in arts and humanities while developing technical skills.
+                    </p>
+                </div>
+                <div class="about-card">
+                    <div class="about-card-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3>Python Certification</h3>
+                    <p>
+                        Completed Python programming certification from GeeksforGeeks.
+                        Gained proficiency in Python fundamentals, data structures, and problem-solving techniques.
+                    </p>
+                </div>
+                <div class="about-card">
+                    <div class="about-card-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Self-Taught Developer</h3>
+                    <p>
+                        Continuously learning and expanding knowledge in modern web technologies,
+                        frameworks, and development best practices through online resources and projects.
                     </p>
                 </div>
             </div>
@@ -1063,7 +1349,7 @@
                         </div>
                         <div class="contact-card-content">
                             <h4>Email</h4>
-                            <p>ysr.hameed@example.com</p>
+                            <p>ysr.hameed.yh@gmail.com</p>
                         </div>
                     </div>
                     <div class="contact-card">
@@ -1072,7 +1358,7 @@
                         </div>
                         <div class="contact-card-content">
                             <h4>Phone</h4>
-                            <p>+1 (234) 567-8900</p>
+                            <p>+91 9169636627</p>
                         </div>
                     </div>
                     <div class="contact-card">
@@ -1081,24 +1367,26 @@
                         </div>
                         <div class="contact-card-content">
                             <h4>Location</h4>
-                            <p>Your City, Country</p>
+                            <p>Uttar Pradesh, India</p>
                         </div>
                     </div>
                     <div class="social-links">
-                        <a href="https://github.com/ysr-hameed" class="social-link" target="_blank">
+                        <a href="https://github.com/ysr-hameed" class="social-link" target="_blank" title="GitHub">
                             <i class="fab fa-github"></i>
                         </a>
-                        <a href="https://linkedin.com/in/ysr-hameed" class="social-link" target="_blank">
+                        <a href="https://wa.me/919169636627" class="social-link" target="_blank" title="WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="https://in.linkedin.com/in/yasir-hameed-59b70b36b" class="social-link" target="_blank"
+                            title="LinkedIn">
                             <i class="fab fa-linkedin-in"></i>
                         </a>
-                        <a href="https://twitter.com/ysr-hameed" class="social-link" target="_blank">
-                            <i class="fab fa-twitter"></i>
+                        <a href="https://instagram.com/ysr_hameed" class="social-link" target="_blank"
+                            title="Instagram">
+                            <i class="fab fa-instagram"></i>
                         </a>
-                        <a href="https://dribbble.com/ysr-hameed" class="social-link" target="_blank">
-                            <i class="fab fa-dribbble"></i>
-                        </a>
-                        <a href="https://codepen.io/ysr-hameed" class="social-link" target="_blank">
-                            <i class="fab fa-codepen"></i>
+                        <a href="mailto:ysr.hameed.yh@gmail.com" class="social-link" title="Email">
+                            <i class="fas fa-envelope"></i>
                         </a>
                     </div>
                 </div>
@@ -1128,8 +1416,25 @@
     <footer>
         <div class="container">
             <div class="footer-content">
-                <div class="footer-logo">YSR</div>
-                <p class="footer-text">© 2026 YSR Hameed. Crafted with passion & code.</p>
+                <div class="footer-logo">Yasir Hameed</div>
+                <div class="footer-social">
+                    <a href="https://github.com/ysr-hameed" target="_blank" title="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://wa.me/919169636627" target="_blank" title="WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="https://in.linkedin.com/in/yasir-hameed-59b70b36b" target="_blank" title="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://instagram.com/ysr_hameed" target="_blank" title="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="mailto:ysr.hameed.yh@gmail.com" title="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+                <p class="footer-text">© 2026 Yasir Hameed. Crafted with passion & code.</p>
             </div>
         </div>
     </footer>
@@ -1153,69 +1458,45 @@
             { icon: 'fab fa-node-js', name: 'Node.js', category: 'Backend' },
             { icon: 'fab fa-js', name: 'JavaScript', category: 'Language' },
             { icon: 'fab fa-python', name: 'Python', category: 'Language' },
-            { icon: 'fas fa-database', name: 'MongoDB', category: 'Database' },
+            { icon: 'fas fa-database', name: 'PostgreSQL', category: 'Database' },
             { icon: 'fab fa-html5', name: 'HTML5', category: 'Frontend' },
             { icon: 'fab fa-css3-alt', name: 'CSS3', category: 'Frontend' },
-            { icon: 'fab fa-sass', name: 'SASS', category: 'Frontend' },
-            { icon: 'fas fa-server', name: 'Express', category: 'Backend' },
+            { icon: 'fas fa-fire', name: 'Next.js', category: 'Framework', fullWidth: true },
             { icon: 'fab fa-git-alt', name: 'Git', category: 'Tools' },
             { icon: 'fab fa-docker', name: 'Docker', category: 'DevOps' },
-            { icon: 'fab fa-vuejs', name: 'Vue.js', category: 'Frontend' },
-            { icon: 'fab fa-aws', name: 'AWS', category: 'Cloud' },
-            { icon: 'fas fa-mobile-alt', name: 'React Native', category: 'Mobile' },
-            { icon: 'fab fa-figma', name: 'Figma', category: 'Design' },
-            { icon: 'fas fa-fire', name: 'Next.js', category: 'Framework' }
+            { icon: 'fas fa-brain', name: 'AI Integration', category: 'AI', fullWidth: true },
+            { icon: 'fas fa-cloud', name: 'Cloud Development', category: 'Cloud', fullWidth: true }
         ];
 
         // Projects Data
         const projects = [
             {
-                title: 'E-Commerce Platform',
-                description: 'Full-featured online shopping platform with payment integration, cart management, and admin dashboard.',
-                tech: ['React', 'Node.js', 'MongoDB', 'Stripe'],
-                icon: 'fas fa-shopping-cart',
-                github: 'https://github.com/ysr-hameed',
-                live: '#'
+                title: 'StartElio',
+                description: 'Full stack AI tools platform with many AI-powered developer tools. Built entirely with Next.js for modern, scalable web applications.',
+                tech: ['Next.js'],
+                icon: 'fas fa-tools',
+                live: 'https://startelio.in'
             },
             {
-                title: 'Task Management App',
-                description: 'Collaborative task manager with real-time updates, team features, and progress tracking.',
-                tech: ['Next.js', 'TypeScript', 'PostgreSQL', 'Socket.io'],
-                icon: 'fas fa-tasks',
-                github: 'https://github.com/ysr-hameed',
-                live: '#'
+                title: 'Hypz Cloud',
+                description: 'Secure, scalable object storage powered by Backblaze B2 with S3-compatible API, CDN integration, and advanced features for developers and enterprises.',
+                tech: ['React', 'Vite', 'Tailwind CSS', 'Node.js', 'Fastify', 'PostgreSQL', 'Backblaze B2', 'JavaScript SDK', 'Python SDK', 'Java SDK'],
+                icon: 'fas fa-cloud',
+                github: 'https://github.com/ysr-hameed/hypz-cloud-private'
             },
             {
-                title: 'Social Media Dashboard',
-                description: 'Analytics platform with data visualization, reporting, and multi-account management.',
-                tech: ['Vue.js', 'Python', 'Django', 'D3.js'],
-                icon: 'fas fa-chart-line',
-                github: 'https://github.com/ysr-hameed',
-                live: '#'
+                title: 'Online Secure File Sharing',
+                description: 'Share files securely with end-to-end encryption, zero-knowledge architecture, and auto-expiry. Lightning fast, completely private, no signup required.',
+                tech: ['React', 'Vite', 'Tailwind CSS', 'Fastify', 'PostgreSQL', 'Backblaze B2', 'JWT', 'bcrypt'],
+                icon: 'fas fa-file',
+                github: 'https://github.com/ysr-hameed/online-secure-file-sharing'
             },
             {
-                title: 'Real-Time Chat',
-                description: 'Secure messaging app with end-to-end encryption, group chats, and file sharing.',
-                tech: ['React', 'Socket.io', 'Node.js', 'MongoDB'],
-                icon: 'fas fa-comments',
-                github: 'https://github.com/ysr-hameed',
-                live: '#'
-            },
-            {
-                title: 'AI Content Generator',
-                description: 'AI-powered platform for generating content using advanced language models.',
-                tech: ['React', 'FastAPI', 'OpenAI', 'PostgreSQL'],
-                icon: 'fas fa-brain',
-                github: 'https://github.com/ysr-hameed',
-                live: '#'
-            },
-            {
-                title: 'Fitness Tracker',
-                description: 'Mobile app for tracking workouts, nutrition, and fitness goals with analytics.',
-                tech: ['React Native', 'Firebase', 'Node.js', 'Chart.js'],
-                icon: 'fas fa-dumbbell',
-                github: 'https://github.com/ysr-hameed',
-                live: '#'
+                title: 'Social Media Auto Shorts',
+                description: 'An automated tool for creating YouTube Shorts videos.',
+                tech: ['Python', 'Flask', 'PostgreSQL', 'OpenRouter API', 'Pillow', 'Edge TTS', 'OpenCV'],
+                icon: 'fab fa-youtube',
+                github: 'https://github.com/ysr-hameed/youtube-auto-shorts'
             }
         ];
 
@@ -1223,7 +1504,7 @@
         const skillsContainer = document.getElementById('skillsContainer');
         skills.forEach(skill => {
             const skillItem = document.createElement('div');
-            skillItem.className = 'skill-item';
+            skillItem.className = `skill-item ${skill.fullWidth ? 'full-width' : ''}`;
             skillItem.innerHTML = `
                 <i class="${skill.icon}"></i>
                 <h4>${skill.name}</h4>
@@ -1251,12 +1532,12 @@
                         ${project.tech.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
                     </div>
                     <div class="project-links">
-                        <a href="${project.github}" class="project-link github" target="_blank">
+                        ${project.live ? `<a href="${project.live}" class="project-link live" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> Live
+                        </a>` : ''}
+                        ${project.github && project.github !== '#' ? `<a href="${project.github}" class="project-link github full-width" target="_blank">
                             <i class="fab fa-github"></i> Code
-                        </a>
-                        <a href="${project.live}" class="project-link live" target="_blank">
-                            <i class="fas fa-external-link-alt"></i> Demo
-                        </a>
+                        </a>` : ''}
                     </div>
                 </div>
             `;
@@ -1300,12 +1581,78 @@
 
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-        // Form Submit
-        document.getElementById('contactForm').addEventListener('submit', (e) => {
+        // Initialize EmailJS
+        (function () {
+            emailjs.init("PTbvL_0MzTWNq1iXT");
+        })();
+
+        // Form Submit with EmailJS
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
             e.preventDefault();
-            alert('Thank you for reaching out! I\'ll get back to you soon. 🚀');
-            e.target.reset();
+            const form = e.target;
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+
+            // Show loading state
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            submitBtn.disabled = true;
+
+            // Send email using EmailJS
+            emailjs.sendForm('service_rkftaxc', 'template_dqb6mhh', form)
+                .then(function (response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    // Success
+                    submitBtn.innerHTML = '<i class="fas fa-check"></i> Sent!';
+                    submitBtn.style.background = 'var(--success)';
+                    form.reset();
+
+                    // Reset button after 3 seconds
+                    setTimeout(() => {
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.style.background = '';
+                        submitBtn.disabled = false;
+                    }, 3000);
+                }, function (error) {
+                    console.error('FAILED...', error);
+                    submitBtn.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Error';
+                    submitBtn.style.background = 'var(--danger)';
+
+                    // Reset button after 3 seconds
+                    setTimeout(() => {
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.style.background = '';
+                        submitBtn.disabled = false;
+                    }, 3000);
+                });
+        });
+
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const currentTheme = localStorage.getItem('theme') || 'dark';
+        if (currentTheme === 'light') {
+            body.classList.add('light-theme');
+            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        } else {
+            themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+        }
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('light-theme');
+            const isLight = body.classList.contains('light-theme');
+            themeToggle.innerHTML = isLight ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+        });
+
+        // Scroll effect for nav
+        const nav = document.querySelector('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
         });
     </script>
 </body>
+
 </html>

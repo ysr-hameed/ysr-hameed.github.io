@@ -1,0 +1,16 @@
+{
+    "name": "Yasir Hameed - Full Stack Developer",
+    "short_name": "Yasir Hameed",
+    "description": "Professional Full Stack Developer specializing in React, Node.js, and modern web technologies",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#0A0A0F",
+    "theme_color": "#00F5FF",
+    "icons": [
+        {
+            "src": "favicon.svg",
+            "sizes": "32x32",
+            "type": "image/svg+xml"
+        }
+    ]
+}
