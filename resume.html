@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yasir Hameed - Resume</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #000;
+            background: #fff;
+            line-height: 1.5;
+            font-size: 10px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #000;
+            padding-bottom: 8px;
+        }
+
+        .name {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .title {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .contact {
+            font-size: 10px;
+            color: #333;
+        }
+
+        .section {
+            margin-bottom: 12px;
+            page-break-inside: avoid;
+        }
+
+        .section-title {
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            border-bottom: 1px solid #000;
+            padding-bottom: 3px;
+        }
+
+        .summary {
+            margin-bottom: 15px;
+        }
+
+        .skills-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 3px;
+        }
+
+        .skill {
+            background: #f0f0f0;
+            padding: 4px 8px;
+            border-radius: 3px;
+            font-size: 10px;
+        }
+
+        .project {
+            margin-bottom: 10px;
+            page-break-inside: avoid;
+        }
+
+        .project-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .project-desc {
+            margin-bottom: 5px;
+        }
+
+        .tech-stack {
+            font-size: 10px;
+            color: #666;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5px;
+            font-size: 10px;
+        }
+
+        @media print {
+            body {
+                font-size: 9px;
+            }
+
+            @page {
+                size: A4;
+                margin: 0.2in;
+            }
+
+            .container {
+                max-width: none;
+                padding: 0;
+            }
+
+            .projects-grid {
+                display: block;
+                column-count: 2;
+                column-gap: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="name">Yasir Hameed</div>
+            <div class="title">Full Stack Web Developer</div>
+            <div class="contact">
+                ysr.hameed.yh@gmail.com | github.com/ysr-hameed | linkedin.com/in/yasir-hameed-59b70b36b |
+                instagram.com/ysr_hameed
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Professional Summary</div>
+            <div class="summary">
+                Results-driven Full Stack Web Developer with 3+ years of experience in React, Next.js, Node.js, and
+                Python. Expertise in building scalable web applications, integrating AI APIs, and deploying on AWS.
+                Proficient in TypeScript, PostgreSQL, Docker, and RESTful APIs. Passionate about clean code, user
+                experience, and performance optimization.
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Technical Skills</div>
+            <div class="skills-list">
+                <span class="skill">JavaScript</span>
+                <span class="skill">TypeScript</span>
+                <span class="skill">Python</span>
+                <span class="skill">HTML5</span>
+                <span class="skill">CSS3</span>
+                <span class="skill">React</span>
+                <span class="skill">Next.js</span>
+                <span class="skill">Node.js</span>
+                <span class="skill">Express</span>
+                <span class="skill">Fastify</span>
+                <span class="skill">Flask</span>
+                <span class="skill">PostgreSQL</span>
+                <span class="skill">MongoDB</span>
+                <span class="skill">AI APIs</span>
+                <span class="skill">Docker</span>
+                <span class="skill">AWS</span>
+                <span class="skill">WebSocket</span>
+                <span class="skill">REST API</span>
+                <span class="skill">Git</span>
+                <span class="skill">Tailwind CSS</span>
+                <span class="skill">Vercel</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Education</div>
+            <div class="project">
+                <div class="project-title">Bachelor of Arts (BA)</div>
+                <div class="project-desc">TNPG College, Tanda, Ambedkar Nagar | Currently in 3rd Semester</div>
+                <div class="tech-stack">Focus on Humanities and General Education</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Professional Experience</div>
+
+            <div class="project">
+                <div class="project-title">Full Stack Developer (Freelance)</div>
+                <div class="project-desc">Developed full-stack web applications using React, Next.js, Node.js, and
+                    Python. Implemented AI integrations, database management with PostgreSQL, and cloud deployments on
+                    AWS. Focused on responsive design, API development, and performance optimization.</div>
+                <div class="tech-stack">2022 - Present | React, Node.js, Python, AWS, Docker, REST APIs</div>
+            </div>
+
+            <div class="project">
+                <div class="project-title">Web Development Consultant</div>
+                <div class="project-desc">Provided end-to-end web development services including frontend development
+                    with TypeScript, backend APIs with Fastify, and AI-powered features. Managed project lifecycles from
+                    planning to deployment.</div>
+                <div class="tech-stack">2021 - Present | TypeScript, Fastify, AI APIs, WebSocket</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Featured Projects</div>
+
+            <div class="projects-grid">
+                <div class="project">
+                    <div class="project-title">StartElio - AI Tools Platform</div>
+                    <div class="project-desc">Comprehensive AI tools platform built with Next.js, featuring intelligent
+                        automation tools for developers including code generation, API testing, and productivity
+                        enhancers.
+                    </div>
+                    <div class="tech-stack">Next.js, React, TypeScript, AI APIs, OpenAI Integration</div>
+                </div>
+
+                <div class="project">
+                    <div class="project-title">Hypz Cloud - Object Storage Platform</div>
+                    <div class="project-desc">Secure object storage platform with S3-compatible API, CDN integration,
+                        user
+                        management, and file sharing capabilities. Includes admin dashboard and analytics.</div>
+                    <div class="tech-stack">React, Node.js, PostgreSQL, Fastify, AWS S3, Docker</div>
+                </div>
+
+                <div class="project">
+                    <div class="project-title">Secure File Sharing</div>
+                    <div class="project-desc">Privacy-focused file sharing application with end-to-end encryption,
+                        zero-knowledge architecture, secure links, and file expiration features.</div>
+                    <div class="tech-stack">React, Vite, Fastify, Encryption, JWT, WebSocket</div>
+                </div>
+
+                <div class="project">
+                    <div class="project-title">Auto Shorts Generator</div>
+                    <div class="project-desc">Automated YouTube Shorts creation tool with AI-powered script generation,
+                        video editing, and content optimization for social media marketing.</div>
+                    <div class="tech-stack">Python, Flask, OpenCV, AI APIs, FFmpeg, REST API</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Certifications</div>
+            <div class="skills-list">
+                <span class="skill">Python Programming (Geeks for Geeks - 3 Weeks)</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Languages</div>
+            <div class="skills-list">
+                <span class="skill">English (Fluent)</span>
+                <span class="skill">Hindi (Native)</span>
+                <span class="skill">Urdu (Native)</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Contact Information</div>
+            <div class="contact-info">
+                <div>Email: ysr.hameed.yh@gmail.com</div>
+                <div>GitHub: github.com/ysr-hameed</div>
+                <div>LinkedIn: linkedin.com/in/yasir-hameed-59b70b36b</div>
+                <div>Instagram: instagram.com/ysr_hameed</div>
+                <div>Portfolio: ysr-hameed.github.io</div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
