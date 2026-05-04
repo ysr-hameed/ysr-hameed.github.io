@@ -5,10 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yasir Hameed - Resume</title>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
     <style>
         * {
             margin: 0;
@@ -16,272 +18,471 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --dark: #0f0f0f;
+            --gray: #6b6b6b;
+            --light-gray: #a3a3a3;
+            --border: #e5e5e5;
+            --bg: #f5f5f5;
+            --white: #ffffff;
+            --accent: #2563eb;
+        }
+
         body {
-            font-family: 'Poppins', sans-serif;
-            color: #000;
-            background: #fff;
-            line-height: 1.5;
-            font-size: 10px;
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg);
+            color: var(--dark);
+            line-height: 1.55;
+            font-size: 14px;
+        }
+
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 20px auto;
+            background: var(--white);
+            box-shadow: 0 4px 30px rgba(0,0,0,0.08);
         }
 
         .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
+            padding: 40px 48px;
         }
 
         .header {
-            text-align: center;
-            margin-bottom: 15px;
-            border-bottom: 2px solid #000;
-            padding-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding-bottom: 28px;
+            border-bottom: 1px solid var(--dark);
+            margin-bottom: 32px;
         }
 
-        .name {
-            font-size: 24px;
+        .header-left h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 32px;
             font-weight: 700;
-            margin-bottom: 5px;
+            color: var(--dark);
+            letter-spacing: -1px;
+            margin-bottom: 6px;
         }
 
-        .title {
-            font-size: 16px;
+        .header-left .title {
+            font-size: 14px;
+            color: var(--gray);
             font-weight: 500;
-            margin-bottom: 10px;
         }
 
-        .contact {
-            font-size: 10px;
-            color: #333;
+        .header-right {
+            text-align: right;
+            font-size: 12px;
+        }
+
+        .header-right a {
+            color: var(--gray);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 5px;
+            transition: color 0.2s;
+        }
+
+        .header-right a:hover {
+            color: var(--accent);
         }
 
         .section {
-            margin-bottom: 12px;
-            page-break-inside: avoid;
+            margin-bottom: 26px;
         }
 
         .section-title {
-            font-size: 13px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 11px;
             font-weight: 600;
+            color: var(--dark);
             text-transform: uppercase;
-            margin-bottom: 8px;
-            border-bottom: 1px solid #000;
-            padding-bottom: 3px;
+            letter-spacing: 2px;
+            margin-bottom: 14px;
         }
 
         .summary {
-            margin-bottom: 15px;
+            font-size: 13px;
+            color: var(--gray);
+            line-height: 1.7;
+            max-width: 90%;
         }
 
         .skills-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 3px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
         }
 
-        .skill {
-            background: #f0f0f0;
-            padding: 4px 8px;
-            border-radius: 3px;
-            font-size: 10px;
+        .skill-tag {
+            padding: 6px 14px;
+            background: var(--bg);
+            border-radius: 20px;
+            font-size: 11px;
+            color: var(--dark);
+            font-weight: 500;
         }
 
-        .project {
-            margin-bottom: 10px;
-            page-break-inside: avoid;
+        .skills-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        .skill-category {
+            display: flex;
+            gap: 12px;
+            align-items: baseline;
+        }
+
+        .skill-label {
+            font-weight: 600;
+            font-size: 11px;
+            color: var(--accent);
+            min-width: 90px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .skill-items {
+            font-size: 12px;
+            color: var(--gray);
+            line-height: 1.5;
+        }
+
+        .experience-item {
+            margin-bottom: 20px;
+            padding-left: 16px;
+            border-left: 2px solid var(--border);
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 4px;
+        }
+
+        .experience-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .experience-date {
+            font-size: 11px;
+            color: var(--light-gray);
+        }
+
+        .experience-company {
+            font-size: 12px;
+            color: var(--accent);
+            font-weight: 500;
+            margin-bottom: 6px;
+        }
+
+        .experience-desc {
+            font-size: 12px;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        .project-item {
+            margin-bottom: 14px;
+            padding: 14px 16px;
+            background: var(--bg);
+            border-radius: 8px;
         }
 
         .project-title {
+            font-size: 13px;
             font-weight: 600;
-            margin-bottom: 5px;
+            color: var(--dark);
+            margin-bottom: 4px;
         }
 
         .project-desc {
-            margin-bottom: 5px;
+            font-size: 11px;
+            color: var(--gray);
+            margin-bottom: 8px;
+            line-height: 1.5;
         }
 
-        .tech-stack {
+        .project-tech {
             font-size: 10px;
-            color: #666;
+            color: var(--accent);
+            font-weight: 500;
         }
 
-        .projects-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
+        .cert-list {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
         }
 
-        .contact-info {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 5px;
+        .cert-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 16px;
+            background: var(--bg);
+            border-radius: 6px;
+            min-width: 200px;
+        }
+
+        .cert-icon {
+            width: 24px;
+            height: 24px;
+            background: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark);
             font-size: 10px;
+        }
+
+        .cert-name {
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .cert-issuer {
+            font-size: 10px;
+            color: var(--light-gray);
+            display: block;
+        }
+
+        .education-item {
+            margin-bottom: 12px;
+        }
+
+        .education-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .education-school {
+            font-size: 12px;
+            color: var(--gray);
+        }
+
+        .education-details {
+            font-size: 11px;
+            color: var(--light-gray);
+        }
+
+        .lang-list {
+            display: flex;
+            gap: 24px;
+        }
+
+        .lang-item {
+            font-size: 12px;
+        }
+
+        .lang-name {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .lang-level {
+            color: var(--gray);
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 40px;
+        }
+
+        .column-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--dark);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 14px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--dark);
+        }
+
+        .print-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            padding: 14px 28px;
+            background: var(--dark);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            transition: all 0.3s;
+        }
+
+        .print-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.2);
         }
 
         @media print {
-            body {
-                font-size: 9px;
-            }
+            @page { size: A4; margin: 0; }
+            body { background: white; }
+            .page { width: 100%; height: auto; margin: 0; box-shadow: none; }
+            .print-btn { display: none; }
+            .project-item { background: none; padding: 0; }
+        }
 
-            @page {
-                size: A4;
-                margin: 0.2in;
-            }
-
-            .container {
-                max-width: none;
-                padding: 0;
-            }
-
-            .projects-grid {
-                display: block;
-                column-count: 2;
-                column-gap: 15px;
-            }
+        @media (max-width: 768px) {
+            .page { width: 100%; margin: 0; }
+            .container { padding: 30px 24px; }
+            .header { flex-direction: column; gap: 20px; }
+            .header-right { text-align: left; }
+            .two-column { grid-template-columns: 1fr; }
+            .cert-list { flex-direction: column; }
+            .cert-item { min-width: auto; }
         }
     </style>
 </head>
 
 <body>
-    <div class="container">
-        <div class="header">
-            <div class="name">Yasir Hameed</div>
-            <div class="title">Full Stack Web Developer</div>
-            <div class="contact">
-                ysr.hameed.yh@gmail.com | github.com/ysr-hameed | linkedin.com/in/yasir-hameed-59b70b36b |
-                instagram.com/ysr_hameed
-            </div>
-        </div>
+    <button onclick="window.print()" class="print-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        Save as PDF
+    </button>
 
-        <div class="section">
-            <div class="section-title">Professional Summary</div>
-            <div class="summary">
-                Results-driven Full Stack Web Developer with 3+ years of experience in React, Next.js, Node.js, and
-                Python. Expertise in building scalable web applications, integrating AI APIs, and deploying on AWS.
-                Proficient in TypeScript, PostgreSQL, Docker, and RESTful APIs. Passionate about clean code, user
-                experience, and performance optimization.
-            </div>
-        </div>
-
-        <div class="section">
-            <div class="section-title">Technical Skills</div>
-            <div class="skills-list">
-                <span class="skill">JavaScript</span>
-                <span class="skill">TypeScript</span>
-                <span class="skill">Python</span>
-                <span class="skill">HTML5</span>
-                <span class="skill">CSS3</span>
-                <span class="skill">React</span>
-                <span class="skill">Next.js</span>
-                <span class="skill">Node.js</span>
-                <span class="skill">Express</span>
-                <span class="skill">Fastify</span>
-                <span class="skill">Flask</span>
-                <span class="skill">PostgreSQL</span>
-                <span class="skill">MongoDB</span>
-                <span class="skill">AI APIs</span>
-                <span class="skill">Docker</span>
-                <span class="skill">AWS</span>
-                <span class="skill">WebSocket</span>
-                <span class="skill">REST API</span>
-                <span class="skill">Git</span>
-                <span class="skill">Tailwind CSS</span>
-                <span class="skill">Vercel</span>
-            </div>
-        </div>
-
-        <div class="section">
-            <div class="section-title">Education</div>
-            <div class="project">
-                <div class="project-title">Bachelor of Arts (BA)</div>
-                <div class="project-desc">TNPG College, Tanda, Ambedkar Nagar | Currently in 3rd Semester</div>
-                <div class="tech-stack">Focus on Humanities and General Education</div>
-            </div>
-        </div>
-
-        <div class="section">
-            <div class="section-title">Professional Experience</div>
-
-            <div class="project">
-                <div class="project-title">Full Stack Developer (Freelance)</div>
-                <div class="project-desc">Developed full-stack web applications using React, Next.js, Node.js, and
-                    Python. Implemented AI integrations, database management with PostgreSQL, and cloud deployments on
-                    AWS. Focused on responsive design, API development, and performance optimization.</div>
-                <div class="tech-stack">2022 - Present | React, Node.js, Python, AWS, Docker, REST APIs</div>
+    <div class="page">
+        <div class="container">
+            <div class="header">
+                <div class="header-left">
+                    <h1>Yasir Hameed</h1>
+                    <div class="title">Full Stack Developer</div>
+                </div>
+                <div class="header-right">
+                    <a href="mailto:ysr.hameed.yh@gmail.com">✉ ysr.hameed.yh@gmail.com</a>
+                    <a href="https://github.com/ysr-hameed" target="_blank">⌘ github.com/ysr-hameed</a>
+                    <a href="https://linkedin.com/in/yasir-hameed-59b70b36b" target="_blank">◈ linkedin.com/in/yasir-hameed-59b70b36b</a>
+                    <a href="https://ysr-hameed.github.io" target="_blank">◎ ysr-hameed.github.io</a>
+                </div>
             </div>
 
-            <div class="project">
-                <div class="project-title">Web Development Consultant</div>
-                <div class="project-desc">Provided end-to-end web development services including frontend development
-                    with TypeScript, backend APIs with Fastify, and AI-powered features. Managed project lifecycles from
-                    planning to deployment.</div>
-                <div class="tech-stack">2021 - Present | TypeScript, Fastify, AI APIs, WebSocket</div>
+            <div class="section">
+                <div class="section-title">About</div>
+                <div class="summary">
+                    Full Stack Web Developer with experience building modern, scalable web applications using React, Next.js, Node.js, and Python. Skilled in AI integrations, cloud deployments, and creating clean, performant code.
+                </div>
             </div>
-        </div>
 
-        <div class="section">
-            <div class="section-title">Featured Projects</div>
+            <div class="section">
+                <div class="section-title">Skills</div>
+                <div class="skills-list">
+                    <span class="skill-tag">React</span>
+                    <span class="skill-tag">Next.js</span>
+                    <span class="skill-tag">TypeScript</span>
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">Node.js</span>
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">Express.js</span>
+                    <span class="skill-tag">PostgreSQL</span>
+                    <span class="skill-tag">MongoDB</span>
+                    <span class="skill-tag">Docker</span>
+                    <span class="skill-tag">AWS</span>
+                    <span class="skill-tag">REST APIs</span>
+                    <span class="skill-tag">Git</span>
+                    <span class="skill-tag">Tailwind CSS</span>
+                </div>
+            </div>
 
-            <div class="projects-grid">
-                <div class="project">
-                    <div class="project-title">StartElio - AI Tools Platform</div>
-                    <div class="project-desc">Comprehensive AI tools platform built with Next.js, featuring intelligent
-                        automation tools for developers including code generation, API testing, and productivity
-                        enhancers.
+            <div class="two-column">
+                <div class="column">
+                    <div class="column-title">Experience</div>
+                    
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <span class="experience-title">Full Stack Developer</span>
+                            <span class="experience-date">2022 — Present</span>
+                        </div>
+                        <div class="experience-company">Freelance / Self-Employed</div>
+                        <div class="experience-desc">
+                            Building custom web applications. Developed scalable solutions using React/Next.js frontends with Node.js backends. Implemented AI integrations and cloud deployments.
+                        </div>
                     </div>
-                    <div class="tech-stack">Next.js, React, TypeScript, AI APIs, OpenAI Integration</div>
+
+                    <div class="column-title" style="margin-top: 20px;">Education</div>
+                    
+                    <div class="education-item">
+                        <div class="education-title">Bachelor of Arts (BA)</div>
+                        <div class="education-school">TNPG College, Tanda</div>
+                        <div class="education-details">Ambedkar Nagar • Currently in 3rd Semester</div>
+                    </div>
+
+                    <div class="column-title" style="margin-top: 20px;">Languages</div>
+                    <div class="lang-list">
+                        <span class="lang-item"><span class="lang-name">English</span> <span class="lang-level">— Fluent</span></span>
+                        <span class="lang-item"><span class="lang-name">Hindi</span> <span class="lang-level">— Native</span></span>
+                    </div>
                 </div>
 
-                <div class="project">
-                    <div class="project-title">Hypz Cloud - Object Storage Platform</div>
-                    <div class="project-desc">Secure object storage platform with S3-compatible API, CDN integration,
-                        user
-                        management, and file sharing capabilities. Includes admin dashboard and analytics.</div>
-                    <div class="tech-stack">React, Node.js, PostgreSQL, Fastify, AWS S3, Docker</div>
+                <div class="column">
+                    <div class="column-title">Projects</div>
+                    
+                    <div class="project-item">
+                        <div class="project-title">Hypz Cloud — S3-Compatible Storage Platform</div>
+                        <div class="project-desc">Cloud storage platform with SDKs for Node.js, Python & Java. Features user management, CDN integration, and analytics.</div>
+                        <div class="project-tech">React · Node.js · PostgreSQL · AWS S3</div>
+                    </div>
+
+                    <div class="project-item">
+                        <div class="project-title">Secure File Sharing Platform</div>
+                        <div class="project-desc">Privacy-focused file sharing with end-to-end encryption, secure links, and file expiration features.</div>
+                        <div class="project-tech">React · Fastify · Encryption · JWT</div>
+                    </div>
+
+                    <div class="project-item">
+                        <div class="project-title">Auto Shorts Generator</div>
+                        <div class="project-desc">Automated YouTube Shorts creation tool with AI-powered script generation and video processing.</div>
+                        <div class="project-tech">Python · Flask · OpenCV · AI APIs</div>
+                    </div>
+
+                    <div class="column-title" style="margin-top: 16px;">Tech Stack</div>
+                    <div class="skills-grid">
+                        <div class="skill-category">
+                            <div class="skill-label">Languages</div>
+                            <div class="skill-items">Python, JavaScript, TypeScript, C++, Go, SQL, HTML/CSS</div>
+                        </div>
+                        <div class="skill-category">
+                            <div class="skill-label">Frameworks</div>
+                            <div class="skill-items">React, Node.js, FastAPI, Flask, Django, Express</div>
+                        </div>
+                        <div class="skill-category">
+                            <div class="skill-label">Tools & Cloud</div>
+                            <div class="skill-items">AWS, Docker, Kubernetes, Git, Linux, PostgreSQL, Redis</div>
+                        </div>
+                        <div class="skill-category">
+                            <div class="skill-label">AI/ML</div>
+                            <div class="skill-items">LangChain, OpenAI API, Hugging Face, TensorFlow, Computer Vision</div>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="project">
-                    <div class="project-title">Secure File Sharing</div>
-                    <div class="project-desc">Privacy-focused file sharing application with end-to-end encryption,
-                        zero-knowledge architecture, secure links, and file expiration features.</div>
-                    <div class="tech-stack">React, Vite, Fastify, Encryption, JWT, WebSocket</div>
-                </div>
-
-                <div class="project">
-                    <div class="project-title">Auto Shorts Generator</div>
-                    <div class="project-desc">Automated YouTube Shorts creation tool with AI-powered script generation,
-                        video editing, and content optimization for social media marketing.</div>
-                    <div class="tech-stack">Python, Flask, OpenCV, AI APIs, FFmpeg, REST API</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="section">
-            <div class="section-title">Certifications</div>
-            <div class="skills-list">
-                <span class="skill">Python Programming (Geeks for Geeks - 3 Weeks)</span>
-            </div>
-        </div>
-
-        <div class="section">
-            <div class="section-title">Languages</div>
-            <div class="skills-list">
-                <span class="skill">English (Fluent)</span>
-                <span class="skill">Hindi (Native)</span>
-                <span class="skill">Urdu (Native)</span>
-            </div>
-        </div>
-
-        <div class="section">
-            <div class="section-title">Contact Information</div>
-            <div class="contact-info">
-                <div>Email: ysr.hameed.yh@gmail.com</div>
-                <div>GitHub: github.com/ysr-hameed</div>
-                <div>LinkedIn: linkedin.com/in/yasir-hameed-59b70b36b</div>
-                <div>Instagram: instagram.com/ysr_hameed</div>
-                <div>Portfolio: ysr-hameed.github.io</div>
             </div>
         </div>
     </div>
 </body>
-
 </html>
