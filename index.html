@@ -7,15 +7,14 @@
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg width='64' height='64' viewBox='0 0 64 64' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='64' height='64' rx='16' fill='%23111'/%3E%3Ctext x='32' y='44' font-family='system-ui' font-size='32' font-weight='700' text-anchor='middle' fill='%23FAF8F5'%3EYH%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
-<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-:root{--bg:#FAF8F5;--text:#111;--muted:#777;--subtle:#BBB;--border:rgba(0,0,0,0.06);--sans:'Syne',system-ui,sans-serif;--serif:'Source Serif 4',Georgia,serif;--nav-bg:rgba(250,248,245,0.92);--modal-bg:rgba(250,248,245,0.97);--media-bg:#F0ECE6;--scrollbar:#DDD}
+:root{--bg:#FAF8F5;--text:#111;--muted:#777;--subtle:#BBB;--border:rgba(0,0,0,0.06);--sans:'Syne',system-ui,sans-serif;--body:'Space Grotesk',system-ui,sans-serif;--nav-bg:rgba(250,248,245,0.92);--modal-bg:rgba(250,248,245,0.97);--media-bg:#F0ECE6;--scrollbar:#DDD}
 [data-theme="dark"]{--bg:#111;--text:#FAF8F5;--muted:#888;--subtle:#555;--border:rgba(255,255,255,0.08);--nav-bg:rgba(17,17,17,0.92);--modal-bg:rgba(17,17,17,0.97);--media-bg:#1A1A1A;--scrollbar:#333}
 html{scroll-behavior:smooth;overflow-x:hidden}
-body{font-family:var(--serif);background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;line-height:1.7;overflow-x:hidden;transition:background 0.4s,color 0.4s;word-wrap:break-word;overflow-wrap:break-word}
+body{font-family:var(--body);background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;line-height:1.7;overflow-x:hidden;transition:background 0.4s,color 0.4s;word-wrap:break-word;overflow-wrap:break-word}
 img,video{max-width:100%;height:auto}
 a{word-wrap:break-word}
 ::selection{background:var(--text);color:var(--bg)}
@@ -50,33 +49,37 @@ nav.scrolled{background:var(--nav-bg);backdrop-filter:blur(16px);-webkit-backdro
 .nav-cta::after{display:none!important}
 
 /* Icon button base */
-.icon-btn{background:none;border:1px solid var(--border);width:34px;height:34px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text);transition:all 0.3s;flex-shrink:0;padding:0}
+.icon-btn{background:none;border:1px solid var(--border);border-radius:10px;width:34px;height:34px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text);transition:all 0.3s;flex-shrink:0;padding:0}
 .icon-btn:hover{border-color:var(--text)}
 
 /* Theme toggle */
 [data-theme="light"] .icon-sun{display:none}
 [data-theme="dark"] .icon-moon{display:none}
 
-/* Hamburger → Lucide menu/x */
-.menu-btn{display:none}
-.menu-btn .icon-menu{transition:opacity 0.2s,transform 0.2s}
-.menu-btn .icon-x{position:absolute;transition:opacity 0.2s,transform 0.2s;opacity:0;transform:scale(0.5) rotate(-90deg)}
-.menu-btn.active .icon-menu{opacity:0;transform:scale(0.5) rotate(90deg)}
+/* Hamburger — PanelLeft-style SaaS icon */
+.menu-btn{display:none;width:34px;height:34px;background:none;border:1px solid var(--border);border-radius:10px;cursor:pointer;align-items:center;justify-content:center;padding:0;transition:border-color 0.3s,background 0.3s;position:relative;overflow:hidden;color:var(--text)}
+.menu-btn:hover{border-color:var(--text);background:var(--border)}
+.menu-btn svg{width:18px;height:18px;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round;transition:all 0.3s cubic-bezier(0.4,0,0.2,1)}
+.menu-btn .icon-panel{opacity:1;transform:scale(1)}
+.menu-btn .icon-x{position:absolute;opacity:0;transform:scale(0.5) rotate(-90deg)}
+.menu-btn.active .icon-panel{opacity:0;transform:scale(0.5) rotate(90deg)}
 .menu-btn.active .icon-x{opacity:1;transform:scale(1) rotate(0deg)}
 
 /* Mobile menu */
-.mob-menu{position:fixed;inset:0;background:var(--bg);z-index:200;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:all 0.4s}
+.mob-menu{position:fixed;inset:0;background:var(--bg);z-index:200;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:all 0.35s ease}
 .mob-menu.open{opacity:1;visibility:visible}
-.mob-menu-close{position:absolute;top:20px;right:20px;z-index:210}
-.mob-menu-links{display:flex;flex-direction:column;align-items:center;gap:4px}
-.mob-menu a.mob-link{font-family:var(--sans);font-size:clamp(28px,7vw,44px);font-weight:700;color:var(--text);text-decoration:none;padding:8px 0;letter-spacing:-0.02em;transition:color 0.3s,opacity 0.4s,transform 0.4s;opacity:0;transform:translateY(20px)}
-.mob-menu.open .mob-menu a.mob-link{opacity:1;transform:translateY(0)}
-.mob-menu.open .mob-menu a.mob-link:nth-child(1){transition-delay:0.1s}
-.mob-menu.open .mob-menu a.mob-link:nth-child(2){transition-delay:0.15s}
-.mob-menu.open .mob-menu a.mob-link:nth-child(3){transition-delay:0.2s}
-.mob-menu.open .mob-menu a.mob-link:nth-child(4){transition-delay:0.25s}
-.mob-menu a.mob-link:hover{color:var(--muted)}
-.mob-menu-footer{position:absolute;bottom:40px;display:flex;align-items:center;gap:16px;opacity:0;transform:translateY(10px);transition:all 0.4s 0.3s}
+.mob-menu-close{position:absolute;top:16px;right:16px;z-index:210;width:34px;height:34px;background:none;border:1px solid var(--border);border-radius:10px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text);transition:border-color 0.3s}
+.mob-menu-close:hover{border-color:var(--text)}
+.mob-menu-close svg{width:18px;height:18px;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.mob-menu-links{display:flex;flex-direction:column;align-items:center;gap:0}
+.mob-link{font-family:var(--sans);font-size:clamp(32px,8vw,48px);font-weight:700;color:var(--text);text-decoration:none;padding:12px 24px;letter-spacing:-0.03em;transition:color 0.3s,opacity 0.4s,transform 0.4s;opacity:0;transform:translateY(16px);text-align:center;display:block}
+.mob-menu.open .mob-link{opacity:1;transform:translateY(0)}
+.mob-menu.open .mob-link:nth-child(1){transition-delay:0.06s}
+.mob-menu.open .mob-link:nth-child(2){transition-delay:0.1s}
+.mob-menu.open .mob-link:nth-child(3){transition-delay:0.14s}
+.mob-menu.open .mob-link:nth-child(4){transition-delay:0.18s}
+.mob-link:hover{color:var(--muted)}
+.mob-menu-footer{position:absolute;bottom:32px;left:0;right:0;display:flex;align-items:center;justify-content:center;gap:16px;opacity:0;transform:translateY(10px);transition:all 0.4s 0.25s}
 .mob-menu.open .mob-menu-footer{opacity:1;transform:translateY(0)}
 .mob-menu-footer span{font-family:var(--sans);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em}
 
@@ -145,11 +148,12 @@ section{position:relative}
 .proj-links{display:flex;gap:14px;flex-wrap:wrap}
 .proj-links a{font-family:var(--sans);font-size:11px;font-weight:500;text-decoration:none;color:var(--text);text-transform:uppercase;letter-spacing:0.08em;border-bottom:1px solid var(--text);padding-bottom:1px;transition:all 0.3s;white-space:nowrap;display:inline-flex;align-items:center;gap:6px}
 .proj-links a:hover{letter-spacing:0.14em}
-.proj-media{aspect-ratio:4/3;background:var(--media-bg);overflow:hidden;position:relative;cursor:pointer;transition:transform 0.4s}
-.proj-media:hover{transform:scale(1.01)}
-.proj-media img,.proj-media video{width:100%;height:100%;object-fit:cover;display:block}
+.proj-media{aspect-ratio:4/3;background:var(--media-bg);overflow:hidden;position:relative;cursor:pointer;border-radius:12px;border:1px solid var(--border)}
+.proj-media img,.proj-media video{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;transition:transform 8s ease}
+.proj-media:hover img,.proj-media:hover video{transform:scale(1.05);object-position:bottom center}
+.proj-media::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 60%,rgba(0,0,0,0.15));pointer-events:none;opacity:0;transition:opacity 0.3s}
+.proj-media:hover::after{opacity:1}
 .proj-media .ph{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:var(--subtle);font-family:var(--sans);font-size:9px;text-transform:uppercase;letter-spacing:0.1em}
-.proj-media .ph .lucide-md{width:20px;height:20px;opacity:0.5}
 
 /* Contact */
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;margin-top:56px}
@@ -163,7 +167,7 @@ section{position:relative}
 .ch-link .ch-text{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .form-group{margin-bottom:20px}
 .form-group label{font-family:var(--sans);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.15em;color:var(--muted);display:block;margin-bottom:6px}
-.form-group input,.form-group textarea{width:100%;padding:10px 0;background:transparent;border:none;border-bottom:1px solid var(--border);font-family:var(--serif);font-size:14px;color:var(--text);outline:none;transition:border-color 0.3s}
+.form-group input,.form-group textarea{width:100%;padding:10px 0;background:transparent;border:none;border-bottom:1px solid var(--border);font-family:var(--body);font-size:14px;color:var(--text);outline:none;transition:border-color 0.3s}
 .form-group input:focus,.form-group textarea:focus{border-bottom-color:var(--text)}
 .form-group textarea{min-height:80px;resize:vertical}
 .form-group input::placeholder,.form-group textarea::placeholder{color:var(--subtle)}
@@ -185,12 +189,15 @@ footer{padding:28px 0;border-top:1px solid var(--border)}
 .ft-r a:hover{color:var(--text)}
 
 /* Modal */
-.modal-overlay{position:fixed;inset:0;z-index:300;background:var(--modal-bg);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);opacity:0;visibility:hidden;transition:all 0.4s;overflow-y:auto}
+.modal-overlay{position:fixed;inset:0;z-index:300;background:var(--bg);opacity:0;visibility:hidden;transition:all 0.3s;overflow-y:auto;display:flex;flex-direction:column}
 .modal-overlay.open{opacity:1;visibility:visible}
-.modal-inner{max-width:760px;margin:0 auto;padding:80px 48px 60px}
-.modal-close{position:fixed;top:20px;right:32px;z-index:2}
-.modal-media{width:100%;aspect-ratio:16/9;background:var(--media-bg);margin-bottom:28px;overflow:hidden}
-.modal-media img,.modal-media video{width:100%;height:100%;object-fit:cover}
+.modal-back{position:fixed;top:16px;left:16px;z-index:310;width:36px;height:36px;background:rgba(255,255,255,0.9);backdrop-filter:blur(8px);border:1px solid rgba(0,0,0,0.08);border-radius:10px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#111;transition:all 0.3s;box-shadow:0 2px 8px rgba(0,0,0,0.1)}
+[data-theme="dark"] .modal-back{background:rgba(30,30,30,0.9);border-color:rgba(255,255,255,0.1);color:#FAF8F5}
+.modal-back:hover{transform:scale(1.05);box-shadow:0 4px 12px rgba(0,0,0,0.15)}
+.modal-back svg{width:18px;height:18px;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.modal-img-wrap{flex:1;display:flex;align-items:flex-start;justify-content:center;padding:0}
+.modal-img-wrap img{width:100%;display:block}
+.modal-details{max-width:760px;margin:0 auto;padding:40px 48px 60px}
 .modal-tag{font-family:var(--sans);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.15em;color:var(--muted);margin-bottom:10px}
 .modal-title{font-family:var(--sans);font-size:clamp(24px,3.5vw,36px);font-weight:700;letter-spacing:-0.03em;margin-bottom:14px}
 .modal-desc{font-size:15px;color:var(--muted);line-height:1.8;margin-bottom:20px}
@@ -224,7 +231,7 @@ footer{padding:28px 0;border-top:1px solid var(--border)}
 }
 @media(max-width:768px){
   .container{padding:0 20px}
-  .hero{padding:90px 0 40px;min-height:auto}
+  .hero{padding:110px 0 40px;min-height:auto}
   .hero-name{font-size:clamp(40px,11vw,72px);margin-bottom:20px;word-wrap:break-word;overflow-wrap:break-word}
   .hero-meta{gap:8px;margin-bottom:16px}
   .hero-sub,.hero-location{font-size:9px;letter-spacing:0.12em}
@@ -235,8 +242,7 @@ footer{padding:28px 0;border-top:1px solid var(--border)}
   .section-title{font-size:clamp(24px,5vw,36px)}
   .section-desc{font-size:14px}
   .nav-links{display:none}
-  .menu-btn{display:flex;align-items:center;justify-content:center;width:34px;height:34px;border:1px solid var(--border);cursor:pointer;position:relative;background:none;color:var(--text)}
-  .menu-btn:hover{border-color:var(--text)}
+  .menu-btn{display:flex}
   .about-grid{gap:32px;margin-top:40px}
   .about-text{font-size:14px;line-height:1.75}
   .about-tags{gap:6px;margin-top:16px}
@@ -263,8 +269,8 @@ footer{padding:28px 0;border-top:1px solid var(--border)}
   .form-group{margin-bottom:16px}
   .form-group input,.form-group textarea{font-size:13px;padding:8px 0}
   .form-btn{padding:12px 24px;font-size:10px}
-  .modal-inner{padding:56px 16px 32px}
-  .modal-close{right:12px;top:12px}
+  .modal-details{padding:32px 16px 40px}
+  .modal-back{top:12px;left:12px;width:32px;height:32px}
   .modal-title{font-size:clamp(20px,4vw,28px)}
   .modal-desc{font-size:13px}
   .modal-tech span{font-size:8px;padding:3px 8px}
@@ -274,12 +280,12 @@ footer{padding:28px 0;border-top:1px solid var(--border)}
   .ft-r a{font-size:9px}
   .back-top{bottom:16px;right:16px;width:34px;height:34px}
   .scroll-progress{display:none}
-  .mob-menu a.mob-link{font-size:clamp(24px,8vw,40px);padding:6px 0}
+  .mob-link{font-size:clamp(26px,9vw,42px);padding:10px 20px}
   .mob-menu-footer{bottom:24px}
 }
 @media(max-width:480px){
   .container{padding:0 16px}
-  .hero{padding:80px 0 32px}
+  .hero{padding:120px 0 32px}
   .hero-name{font-size:clamp(36px,13vw,56px);margin-bottom:16px;letter-spacing:-0.03em}
   .hero-meta{flex-direction:column;align-items:flex-start;gap:6px}
   .hero-dot{display:none}
@@ -312,10 +318,9 @@ footer{padding:28px 0;border-top:1px solid var(--border)}
   .form-group label{font-size:9px}
   .form-group input,.form-group textarea{font-size:12px}
   .form-btn{width:100%;justify-content:center;padding:12px 20px}
-  .mob-menu a.mob-link{font-size:clamp(22px,9vw,36px);padding:5px 0}
-  .modal-inner{padding:48px 12px 24px}
+  .mob-link{font-size:clamp(22px,9vw,36px);padding:8px 16px}
+  .modal-details{padding:24px 12px 32px}
   .modal-title{font-size:clamp(18px,5vw,24px)}
-  .modal-media{margin-bottom:20px}
   .modal-tag{font-size:9px}
   .modal-desc{font-size:12px;line-height:1.7}
   .modal-tech span{font-size:7px;padding:2px 6px}
@@ -329,7 +334,7 @@ footer{padding:28px 0;border-top:1px solid var(--border)}
 <div class="scroll-progress" id="scrollProgress"></div>
 
 <div class="mob-menu" id="mobMenu">
-  <button class="icon-btn mob-menu-close" id="mobMenuClose" aria-label="Close menu"><i data-lucide="x" class="lucide-lg"></i></button>
+  <button class="mob-menu-close" id="mobMenuClose" aria-label="Close menu"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
   <div class="mob-menu-links">
     <a href="#about" class="mob-link">About</a>
     <a href="#services" class="mob-link">Services</a>
@@ -338,7 +343,7 @@ footer{padding:28px 0;border-top:1px solid var(--border)}
   </div>
   <div class="mob-menu-footer">
     <span>© 2025</span>
-    <button class="icon-btn" id="mobThemeToggle" aria-label="Toggle theme"><i data-lucide="sun" class="lucide-sm icon-sun"></i><i data-lucide="moon" class="lucide-sm icon-moon"></i></button>
+    <button class="icon-btn" id="mobThemeToggle" aria-label="Toggle theme"><svg class="lucide-sm icon-sun" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><svg class="lucide-sm icon-moon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
   </div>
 </div>
 
@@ -352,8 +357,8 @@ footer{padding:28px 0;border-top:1px solid var(--border)}
         <li><a href="#projects">Work</a></li>
         <li><a href="#contact" class="nav-cta">Contact</a></li>
       </ul>
-      <button class="icon-btn" id="themeToggle" aria-label="Toggle theme"><i data-lucide="sun" class="lucide-sm icon-sun"></i><i data-lucide="moon" class="lucide-sm icon-moon"></i></button>
-      <button class="menu-btn" id="menuBtn" aria-label="Menu"><i data-lucide="menu" class="lucide-md icon-menu"></i><i data-lucide="x" class="lucide-md icon-x"></i></button>
+      <button class="icon-btn" id="themeToggle" aria-label="Toggle theme"><svg class="lucide-sm icon-sun" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><svg class="lucide-sm icon-moon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
+      <button class="menu-btn" id="menuBtn" aria-label="Menu"><svg class="icon-panel" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/></svg><svg class="icon-x" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
     </div>
   </div>
 </nav>
@@ -369,8 +374,8 @@ footer{padding:28px 0;border-top:1px solid var(--border)}
     <div class="hero-line rv rv-d2"></div>
     <p class="hero-desc rv rv-d2">I design and build digital experiences that live at the intersection of technology, creativity, and purpose.</p>
     <div class="hero-btns rv rv-d3">
-      <a href="#projects" class="btn-fill">View Work <i data-lucide="arrow-down" class="lucide-sm"></i></a>
-      <a href="#contact" class="btn-outline">Get in Touch <i data-lucide="arrow-right" class="lucide-sm"></i></a>
+      <a href="#projects" class="btn-fill">View Work <svg class="lucide-sm" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg></a>
+      <a href="#contact" class="btn-outline">Get in Touch <svg class="lucide-sm" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
     </div>
   </div>
   <div class="scroll-hint"><span>Scroll</span><div class="scroll-hint-line"></div></div>
@@ -411,22 +416,22 @@ footer{padding:28px 0;border-top:1px solid var(--border)}
       <a href="#contact" class="svc-item rv">
         <span class="svc-num">01</span>
         <div><h3>Website Design</h3><p>Custom-designed websites that capture your brand — from portfolios to business sites. Every pixel intentional.</p></div>
-        <i data-lucide="arrow-right" class="lucide-md svc-arrow"></i>
+        <svg class="lucide-md svc-arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a>
       <a href="#contact" class="svc-item rv rv-d1">
         <span class="svc-num">02</span>
         <div><h3>Web Applications</h3><p>Full-stack apps built for scale — dashboards, SaaS platforms, tools, and systems that actually perform.</p></div>
-        <i data-lucide="arrow-right" class="lucide-md svc-arrow"></i>
+        <svg class="lucide-md svc-arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a>
       <a href="#contact" class="svc-item rv rv-d2">
         <span class="svc-num">03</span>
         <div><h3>AI Integration</h3><p>Smart features for your product — chatbots, content generation, automation, and intelligence baked in.</p></div>
-        <i data-lucide="arrow-right" class="lucide-md svc-arrow"></i>
+        <svg class="lucide-md svc-arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a>
       <a href="#contact" class="svc-item rv rv-d3">
         <span class="svc-num">04</span>
         <div><h3>E-Commerce</h3><p>Online stores that sell — secure payments, inventory management, and experiences that convert.</p></div>
-        <i data-lucide="arrow-right" class="lucide-md svc-arrow"></i>
+        <svg class="lucide-md svc-arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a>
     </div>
   </div>
@@ -448,9 +453,9 @@ footer{padding:28px 0;border-top:1px solid var(--border)}
       <div>
         <p class="contact-desc rv">I'm always open to talking about projects, ideas, or collaborations. Drop me a message and let's build something great together.</p>
         <div class="contact-channels">
-          <a href="mailto:ysr.hameed.yh@gmail.com" class="ch-link rv"><i data-lucide="mail" class="lucide-md"></i><span class="ch-text">ysr.hameed.yh@gmail.com</span></a>
-          <a href="https://github.com/ysr-hameed" target="_blank" class="ch-link rv rv-d1"><i data-lucide="github" class="lucide-md"></i><span class="ch-text">github.com/ysr-hameed</span></a>
-          <a href="https://www.linkedin.com/in/yasir-hameed-59b70b36b" target="_blank" class="ch-link rv rv-d2"><i data-lucide="linkedin" class="lucide-md"></i><span class="ch-text">Yasir Hameed</span></a>
+          <a href="mailto:ysr.hameed.yh@gmail.com" class="ch-link rv"><svg class="lucide-md" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg><span class="ch-text">ysr.hameed.yh@gmail.com</span></a>
+          <a href="https://github.com/ysr-hameed" target="_blank" class="ch-link rv rv-d1"><svg class="lucide-md" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg><span class="ch-text">github.com/ysr-hameed</span></a>
+          <a href="https://www.linkedin.com/in/yasir-hameed-59b70b36b" target="_blank" class="ch-link rv rv-d2"><svg class="lucide-md" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg><span class="ch-text">Yasir Hameed</span></a>
         </div>
       </div>
       <div>
@@ -458,7 +463,7 @@ footer{padding:28px 0;border-top:1px solid var(--border)}
           <div class="form-group rv"><label>Name</label><input type="text" name="from_name" placeholder="Your name" required></div>
           <div class="form-group rv rv-d1"><label>Email</label><input type="email" name="from_email" placeholder="Your email" required></div>
           <div class="form-group rv rv-d2"><label>Message</label><textarea name="message" placeholder="Tell me about your project..." required></textarea></div>
-          <button type="submit" class="form-btn rv rv-d3">Send Message <i data-lucide="arrow-right" class="lucide-sm"></i></button>
+          <button type="submit" class="form-btn rv rv-d3">Send Message <svg class="lucide-sm" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
         </form>
       </div>
     </div>
@@ -478,15 +483,14 @@ footer{padding:28px 0;border-top:1px solid var(--border)}
 </footer>
 
 <div class="modal-overlay" id="modal">
-  <button class="icon-btn modal-close" id="modalClose" aria-label="Close"><i data-lucide="x" class="lucide-md"></i></button>
-  <div class="modal-inner" id="modalBody"></div>
+  <button class="modal-back" id="modalClose" aria-label="Go back"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></button>
+  <div class="modal-img-wrap" id="modalImgWrap"></div>
+  <div class="modal-details" id="modalBody"></div>
 </div>
 
-<button class="back-top" id="backTop" aria-label="Back to top"><i data-lucide="arrow-up" class="lucide-md"></i></button>
+<button class="back-top" id="backTop" aria-label="Back to top"><svg class="lucide-md" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></button>
 
 <script>
-// Init Lucide icons
-lucide.createIcons();
 
 // Mobile menu
 const menuBtn=document.getElementById('menuBtn');
@@ -520,43 +524,57 @@ document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
 document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',function(e){e.preventDefault();const t=document.querySelector(this.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth'})})});
 
 // Projects data
+function getTheme(){return document.documentElement.getAttribute('data-theme')||'light'}
+function isDarkMode(){return getTheme()==='dark'}
 const projects=[
-  {tag:'AI Platform',title:'StartElio',desc:'An AI-powered tools platform that helps developers and businesses automate workflows, generate content, and boost productivity with smart features.',tech:['Next.js','TypeScript','AI APIs','Fastify'],links:[{l:'Live Demo',u:'https://startelio.in',i:'external-link'},{l:'GitHub',u:'https://github.com/ysr-hameed',i:'github'}],media:'<div class="ph"><i data-lucide="sparkles" class="lucide-md"></i>Add Image / Video</div>'},
-  {tag:'Cloud Storage',title:'Hypz Cloud',desc:'A secure cloud storage platform with an easy-to-use interface. Store, manage, and share files with CDN support and analytics.',tech:['React','Node.js','PostgreSQL','AWS S3'],links:[{l:'Source',u:'https://github.com/ysr-hameed/hypz-cloud-private',i:'github'}],media:'<div class="ph"><i data-lucide="cloud-upload" class="lucide-md"></i>Add Image / Video</div>'},
-  {tag:'Security',title:'Secure File Sharing',desc:'A privacy-focused file sharing platform with end-to-end encryption and zero-knowledge architecture for complete data privacy.',tech:['React','Fastify','Encryption','JWT'],links:[{l:'Source',u:'https://github.com/ysr-hameed/online-secure-file-sharing',i:'github'}],media:'<div class="ph"><i data-lucide="shield" class="lucide-md"></i>Add Image / Video</div>'},
-  {tag:'Automation',title:'Auto Shorts Generator',desc:'An automated YouTube Shorts creator using AI — script generation, video processing with OpenCV, and multi-platform publishing.',tech:['Python','Flask','OpenCV','AI APIs'],links:[{l:'Source',u:'https://github.com/ysr-hameed/youtube-auto-shorts',i:'github'}],media:'<div class="ph"><i data-lucide="play" class="lucide-md"></i>Add Image / Video</div>'}
+  {tag:'AI Platform',title:'StartElio',desc:'An AI-powered tools platform that helps developers and businesses automate workflows, generate content, and boost productivity with smart features.',tech:['Next.js','TypeScript','AI APIs','Fastify'],links:[{l:'Live Demo',u:'https://startelio.in',i:'external-link'},{l:'GitHub',u:'https://github.com/ysr-hameed',i:'github'}],mediaDark:'<img src="images/startelio-dark.png" alt="StartElio" style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block">',mediaLight:'<img src="images/startelio-light.png" alt="StartElio" style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block">',mediaDarkImg:'images/startelio-dark.png',mediaLightImg:'images/startelio-light.png'},
+  {tag:'Cloud Storage',title:'Hypz Cloud',desc:'A secure cloud storage platform with an easy-to-use interface. Store, manage, and share files with CDN support and analytics.',tech:['React','Node.js','PostgreSQL','AWS S3'],links:[{l:'Source',u:'https://github.com/ysr-hameed/hypz-cloud-private',i:'github'}],mediaDark:'<img src="images/hypz-cloud-storage-dark.png" alt="Hypz Cloud" style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block">',mediaLight:'<img src="images/hypz-cloud-storage-light.png" alt="Hypz Cloud" style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block">',mediaDarkImg:'images/hypz-cloud-storage-dark.png',mediaLightImg:'images/hypz-cloud-storage-light.png'},
+  {tag:'Security',title:'Secure File Sharing',desc:'A privacy-focused file sharing platform with end-to-end encryption and zero-knowledge architecture for complete data privacy.',tech:['React','Fastify','Encryption','JWT'],links:[{l:'Source',u:'https://github.com/ysr-hameed/online-secure-file-sharing',i:'github'}],mediaDark:'<img src="images/secure-file-sharing-dark.png" alt="Secure File Sharing" style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block">',mediaLight:'<img src="images/secure-file-sharing-light.png" alt="Secure File Sharing" style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block">',mediaDarkImg:'images/secure-file-sharing-dark.png',mediaLightImg:'images/secure-file-sharing-light.png'}
 ];
 
 // Render projects
 const projList=document.getElementById('projList');
-projects.forEach((p,i)=>{
-  const block=document.createElement('div');
-  block.className='proj-block'+(i%2===1?' flip':'');
-  const tech=p.tech.map(t=>`<span>${t}</span>`).join('');
-  const links=p.links.map(l=>`<a href="${l.u}" target="_blank" onclick="event.stopPropagation()"><i data-lucide="${l.i}" class="lucide-sm"></i>${l.l}</a>`).join('');
-  block.innerHTML=`
-    <div class="proj-info rv">
-      <div class="proj-num">0${i+1}</div>
-      <h3 class="proj-title">${p.title}</h3>
-      <p class="proj-desc">${p.desc}</p>
-      <div class="proj-tech">${tech}</div>
-      <div class="proj-links">${links}</div>
-    </div>
-    <div class="proj-media rv" data-idx="${i}">${p.media}</div>`;
-  projList.appendChild(block);
-  obs.observe(block.querySelector('.rv'));
-});
-lucide.createIcons();
+const svgArrow='<svg class="lucide-sm" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>';
+const svgExt='<svg class="lucide-sm" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>';
+const svgGit='<svg class="lucide-sm" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>';
+const svgLoader='<svg class="lucide-sm spinner" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>';
+const iconMap={'external-link':svgExt,'github':svgGit,'arrow-right':svgArrow};
+
+function getMedia(p){return isDarkMode()?(p.mediaDark||p.media):(p.mediaLight||p.mediaDark||p.media)}
+
+function renderProjects(){
+  projList.innerHTML='';
+  projects.forEach((p,i)=>{
+    const block=document.createElement('div');
+    block.className='proj-block'+(i%2===1?' flip':'');
+    const tech=p.tech.map(t=>`<span>${t}</span>`).join('');
+    const links=p.links.map(l=>`<a href="${l.u}" target="_blank" onclick="event.stopPropagation()">${iconMap[l.i]||''}${l.l}</a>`).join('');
+    block.innerHTML=`
+      <div class="proj-info rv">
+        <div class="proj-num">0${i+1}</div>
+        <h3 class="proj-title">${p.title}</h3>
+        <p class="proj-desc">${p.desc}</p>
+        <div class="proj-tech">${tech}</div>
+        <div class="proj-links">${links}</div>
+      </div>
+      <div class="proj-media rv" data-idx="${i}">${getMedia(p)}</div>`;
+    projList.appendChild(block);
+    block.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+  });
+}
+renderProjects();
 
 // Modal
 const modal=document.getElementById('modal');
 const modalBody=document.getElementById('modalBody');
+const modalImgWrap=document.getElementById('modalImgWrap');
+function getModalMedia(p){const src=isDarkMode()?(p.mediaDarkImg||p.mediaLightImg):(p.mediaLightImg||p.mediaDarkImg);return src?'<img src="'+src+'" alt="'+p.title+' Full" style="width:100%;display:block;cursor:zoom-in" onclick="this.style.objectFit=this.style.objectFit===\'contain\'?\'cover\':\'contain\';this.style.cursor=this.style.cursor===\'zoom-out\'?\'zoom-in\':\'zoom-out\'">':p.modalMedia||p.media}
 function openModal(i){
   const p=projects[i];
   const tech=p.tech.map(t=>`<span>${t}</span>`).join('');
-  const links=p.links.map(l=>`<a href="${l.u}" target="_blank"><i data-lucide="${l.i}" class="lucide-sm"></i>${l.l}</a>`).join('');
+  const links=p.links.map(l=>`<a href="${l.u}" target="_blank">${iconMap[l.i]||''}${l.l}</a>`).join('');
+  modalImgWrap.innerHTML=getModalMedia(p);
   modalBody.innerHTML=`
-    <div class="modal-media">${p.media}</div>
     <div class="modal-tag">${p.tag}</div>
     <h2 class="modal-title">${p.title}</h2>
     <p class="modal-desc">${p.desc}</p>
@@ -564,7 +582,7 @@ function openModal(i){
     <div class="modal-links">${links}</div>`;
   modal.classList.add('open');
   document.body.style.overflow='hidden';
-  lucide.createIcons();
+  modal.scrollTop=0;
 }
 function closeModal(){modal.classList.remove('open');document.body.style.overflow=''}
 document.getElementById('modalClose').addEventListener('click',closeModal);
@@ -577,19 +595,18 @@ document.addEventListener('click',e=>{const m=e.target.closest('.proj-media');if
 document.getElementById('contactForm').addEventListener('submit',function(e){
   e.preventDefault();
   const btn=this.querySelector('button');
-  btn.innerHTML='<i data-lucide="loader-2" class="lucide-sm spinner"></i> Sending...';
+  btn.innerHTML=svgLoader+' Sending...';
   btn.disabled=true;
-  lucide.createIcons();
   emailjs.sendForm('service_rkftaxc','template_dqb6mhh',this)
-    .then(()=>{btn.innerHTML='Sent!';this.reset();setTimeout(()=>{btn.innerHTML='Send Message <i data-lucide="arrow-right" class="lucide-sm"></i>';btn.disabled=false;lucide.createIcons()},3000)})
-    .catch(()=>{btn.innerHTML='Error';setTimeout(()=>{btn.innerHTML='Send Message <i data-lucide="arrow-right" class="lucide-sm"></i>';btn.disabled=false;lucide.createIcons()},3000)});
+    .then(()=>{btn.innerHTML='Sent!';this.reset();setTimeout(()=>{btn.innerHTML='Send Message '+svgArrow;btn.disabled=false},3000)})
+    .catch(()=>{btn.innerHTML='Error';setTimeout(()=>{btn.innerHTML='Send Message '+svgArrow;btn.disabled=false},3000)});
 });
 
 // Theme toggle
 const themeToggle=document.getElementById('themeToggle');
 const mobThemeToggle=document.getElementById('mobThemeToggle');
 const html=document.documentElement;
-function setTheme(t){html.setAttribute('data-theme',t);localStorage.setItem('yh-theme',t)}
+function setTheme(t){html.setAttribute('data-theme',t);localStorage.setItem('yh-theme',t);if(typeof renderProjects==='function')renderProjects()}
 function toggleTheme(){const next=html.getAttribute('data-theme')==='dark'?'light':'dark';setTheme(next)}
 themeToggle.addEventListener('click',toggleTheme);
 mobThemeToggle.addEventListener('click',toggleTheme);
