@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{--bg:#FAF8F5;--text:#111;--muted:#777;--subtle:#BBB;--border:rgba(0,0,0,0.06);--sans:'Syne',system-ui,sans-serif;--body:'Space Grotesk',system-ui,sans-serif;--nav-bg:rgba(250,248,245,0.92);--modal-bg:rgba(250,248,245,0.97);--media-bg:#F0ECE6;--scrollbar:#DDD}
@@ -21,6 +22,17 @@ a{word-wrap:break-word}
 ::-webkit-scrollbar{width:5px}
 ::-webkit-scrollbar-track{background:var(--bg)}
 ::-webkit-scrollbar-thumb{background:var(--scrollbar);border-radius:3px}
+
+/* Noise overlay */
+.noise{position:fixed;inset:0;z-index:9998;pointer-events:none;opacity:0.02}
+.noise::before{content:'';position:absolute;inset:-50%;width:200%;height:200%;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-repeat:repeat;background-size:256px 256px;animation:noiseShift 0.5s steps(4) infinite}
+@keyframes noiseShift{0%{transform:translate(0,0)}25%{transform:translate(-5%,-5%)}50%{transform:translate(-10%,5%)}75%{transform:translate(5%,-10%)}100%{transform:translate(0,0)}}
+
+/* Cursor follower */
+@media(hover:hover){
+.cursor-glow{position:fixed;width:300px;height:300px;border-radius:50%;pointer-events:none;z-index:9997;background:radial-gradient(circle,var(--text) 0%,transparent 70%);opacity:0.04;transform:translate(-50%,-50%);transition:opacity 0.4s}
+.cursor-glow.hidden{opacity:0}
+}
 
 /* Lucide icon base */
 [class*="lucide"]{stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;fill:none;flex-shrink:0}
@@ -56,7 +68,7 @@ nav.scrolled{background:var(--nav-bg);backdrop-filter:blur(16px);-webkit-backdro
 [data-theme="light"] .icon-sun{display:none}
 [data-theme="dark"] .icon-moon{display:none}
 
-/* Hamburger — PanelLeft-style SaaS icon */
+/* Menu button */
 .menu-btn{display:none;width:34px;height:34px;background:none;border:1px solid var(--border);border-radius:10px;cursor:pointer;align-items:center;justify-content:center;padding:0;transition:border-color 0.3s,background 0.3s;position:relative;overflow:hidden;color:var(--text)}
 .menu-btn:hover{border-color:var(--text);background:var(--border)}
 .menu-btn svg{width:18px;height:18px;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round;transition:all 0.3s cubic-bezier(0.4,0,0.2,1)}
@@ -87,6 +99,9 @@ nav.scrolled{background:var(--nav-bg);backdrop-filter:blur(16px);-webkit-backdro
 .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:120px 0 60px;position:relative}
 .hero-name{font-family:var(--sans);font-size:clamp(48px,12vw,140px);font-weight:800;line-height:0.88;letter-spacing:-0.04em;margin-bottom:32px}
 .hero-name .dim{color:var(--muted)}
+.hero-name .char{display:inline-block;opacity:0;transform:translateY(60px) rotateX(-40deg);animation:charReveal 0.8s cubic-bezier(0.22,1,0.36,1) forwards}
+@keyframes charReveal{to{opacity:1;transform:translateY(0) rotateX(0deg)}}
+.hero-name .br{display:block}
 .hero-meta{display:flex;align-items:center;gap:16px;margin-bottom:20px;flex-wrap:wrap}
 .hero-sub{font-family:var(--sans);font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.2em;color:var(--muted)}
 .hero-dot{width:4px;height:4px;background:var(--subtle);border-radius:50%}
@@ -94,7 +109,7 @@ nav.scrolled{background:var(--nav-bg);backdrop-filter:blur(16px);-webkit-backdro
 .hero-line{width:48px;height:1px;background:var(--text);margin-bottom:20px}
 .hero-desc{font-size:16px;color:var(--muted);max-width:440px;line-height:1.8;margin-bottom:36px;font-weight:400}
 .hero-btns{display:flex;gap:12px;flex-wrap:wrap}
-.hero-btns a{font-family:var(--sans);font-size:12px;font-weight:500;text-decoration:none;text-transform:uppercase;letter-spacing:0.1em;padding:13px 26px;transition:all 0.3s;white-space:nowrap;display:inline-flex;align-items:center;gap:8px}
+.hero-btns a{font-family:var(--sans);font-size:12px;font-weight:500;text-decoration:none;text-transform:uppercase;letter-spacing:0.1em;padding:13px 26px;transition:all 0.3s;white-space:nowrap;display:inline-flex;align-items:center;gap:8px;position:relative;overflow:hidden}
 .btn-fill{background:var(--text);color:var(--bg)}
 .btn-fill:hover{opacity:0.85}
 .btn-outline{border:1px solid var(--border);color:var(--text)}
@@ -103,6 +118,14 @@ nav.scrolled{background:var(--nav-bg);backdrop-filter:blur(16px);-webkit-backdro
 .scroll-hint span{font-family:var(--sans);font-size:9px;text-transform:uppercase;letter-spacing:0.2em;color:var(--subtle);writing-mode:vertical-rl}
 .scroll-hint-line{width:1px;height:28px;background:var(--subtle);animation:scrollPulse 2s ease-in-out infinite}
 @keyframes scrollPulse{0%,100%{opacity:1;transform:scaleY(1)}50%{opacity:0.3;transform:scaleY(0.5)}}
+
+/* Marquee */
+.marquee-section{padding:40px 0;overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.marquee-track{display:flex;width:fit-content;animation:marquee 30s linear infinite}
+.marquee-content{display:flex;gap:48px;padding:0 24px;align-items:center;flex-shrink:0}
+.marquee-item{font-family:var(--sans);font-size:12px;font-weight:500;color:var(--muted);text-transform:uppercase;letter-spacing:0.15em;white-space:nowrap;display:flex;align-items:center;gap:8px}
+.marquee-item .dot{width:3px;height:3px;background:var(--subtle);border-radius:50%}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
 /* Sections */
 section{position:relative}
@@ -135,6 +158,20 @@ section{position:relative}
 .svc-item:hover h3{text-decoration:underline;text-underline-offset:4px}
 .svc-item p{font-size:14px;color:var(--muted);line-height:1.7}
 
+/* Timeline */
+.timeline{position:relative;margin-top:56px;padding-left:32px}
+.timeline::before{content:'';position:absolute;left:7px;top:0;bottom:0;width:1px;background:var(--border)}
+.timeline-item{position:relative;padding:0 0 40px 32px}
+.timeline-item:last-child{padding-bottom:0}
+.timeline-dot{position:absolute;left:-29px;top:4px;width:15px;height:15px;border-radius:50%;border:2px solid var(--text);background:var(--bg);z-index:1;transition:background 0.3s}
+.timeline-item:hover .timeline-dot{background:var(--text)}
+.timeline-date{font-family:var(--sans);font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:0.15em;color:var(--subtle);margin-bottom:6px}
+.timeline-item h3{font-family:var(--sans);font-size:18px;font-weight:700;letter-spacing:-0.02em;margin-bottom:2px}
+.timeline-role{font-size:13px;color:var(--muted);margin-bottom:8px}
+.timeline-desc{font-size:14px;color:var(--muted);line-height:1.7}
+.timeline-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.timeline-tags span{font-family:var(--sans);font-size:9px;font-weight:500;padding:3px 8px;border:1px solid var(--border);color:var(--muted);text-transform:uppercase;letter-spacing:0.06em}
+
 /* Projects */
 .proj-block{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;padding:72px 0;border-top:1px solid var(--border)}
 .proj-block:last-child{border-bottom:1px solid var(--border)}
@@ -148,8 +185,9 @@ section{position:relative}
 .proj-links{display:flex;gap:14px;flex-wrap:wrap}
 .proj-links a{font-family:var(--sans);font-size:11px;font-weight:500;text-decoration:none;color:var(--text);text-transform:uppercase;letter-spacing:0.08em;border-bottom:1px solid var(--text);padding-bottom:1px;transition:all 0.3s;white-space:nowrap;display:inline-flex;align-items:center;gap:6px}
 .proj-links a:hover{letter-spacing:0.14em}
-.proj-media{aspect-ratio:4/3;background:var(--media-bg);overflow:hidden;position:relative;cursor:pointer;border-radius:12px;border:1px solid var(--border)}
-.proj-media img,.proj-media video{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;transition:transform 8s ease}
+.proj-media{aspect-ratio:4/3;background:var(--media-bg);overflow:hidden;position:relative;cursor:pointer;border-radius:12px;border:1px solid var(--border);transform-style:preserve-3d;perspective:1000px}
+.proj-media img,.proj-media video{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;transition:transform 8s ease,filter 0.6s ease;filter:blur(10px)}
+.proj-media img.loaded,.proj-media video.loaded{filter:blur(0)}
 .proj-media:hover img,.proj-media:hover video{transform:scale(1.05);object-position:bottom center}
 .proj-media::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 60%,rgba(0,0,0,0.15));pointer-events:none;opacity:0;transition:opacity 0.3s}
 .proj-media:hover::after{opacity:1}
@@ -171,7 +209,7 @@ section{position:relative}
 .form-group input:focus,.form-group textarea:focus{border-bottom-color:var(--text)}
 .form-group textarea{min-height:80px;resize:vertical}
 .form-group input::placeholder,.form-group textarea::placeholder{color:var(--subtle)}
-.form-btn{font-family:var(--sans);font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.1em;background:var(--text);color:var(--bg);border:none;padding:14px 32px;cursor:pointer;transition:all 0.3s;display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
+.form-btn{font-family:var(--sans);font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.1em;background:var(--text);color:var(--bg);border:none;padding:14px 32px;cursor:pointer;transition:all 0.3s;display:inline-flex;align-items:center;gap:8px;white-space:nowrap;position:relative;overflow:hidden}
 .form-btn:hover{opacity:0.85;letter-spacing:0.14em}
 .form-btn:disabled{opacity:0.5;cursor:not-allowed}
 .form-btn .lucide-sm{width:12px;height:12px}
@@ -254,6 +292,11 @@ footer{padding:28px 0;border-top:1px solid var(--border)}
   .svc-num{display:none}
   .svc-item h3{font-size:17px}
   .svc-item p{font-size:13px}
+  .timeline{padding-left:20px;margin-top:40px}
+  .timeline-item{padding:0 0 32px 24px}
+  .timeline-dot{left:-22px;width:12px;height:12px}
+  .timeline-item h3{font-size:16px}
+  .timeline-desc{font-size:13px}
   .proj-block{padding:40px 0;gap:24px}
   .proj-title{font-size:clamp(20px,4vw,28px)}
   .proj-desc{font-size:13px}
@@ -282,6 +325,8 @@ footer{padding:28px 0;border-top:1px solid var(--border)}
   .scroll-progress{display:none}
   .mob-link{font-size:clamp(26px,9vw,42px);padding:10px 20px}
   .mob-menu-footer{bottom:24px}
+  .marquee-item{font-size:10px;gap:6px}
+  .marquee-content{gap:32px}
 }
 @media(max-width:480px){
   .container{padding:0 16px}
@@ -303,6 +348,9 @@ footer{padding:28px 0;border-top:1px solid var(--border)}
   .svc-item{padding:16px 0}
   .svc-item h3{font-size:15px}
   .svc-item p{font-size:12px;line-height:1.6}
+  .timeline-item{padding:0 0 28px 20px}
+  .timeline-dot{left:-18px;width:10px;height:10px}
+  .timeline-item h3{font-size:15px}
   .proj-block{padding:32px 0;gap:20px}
   .proj-media{aspect-ratio:16/10}
   .proj-title{font-size:clamp(18px,5vw,24px)}
@@ -331,6 +379,8 @@ footer{padding:28px 0;border-top:1px solid var(--border)}
 </head>
 <body>
 
+<div class="noise"></div>
+<div class="cursor-glow hidden" id="cursorGlow"></div>
 <div class="scroll-progress" id="scrollProgress"></div>
 
 <div class="mob-menu" id="mobMenu">
@@ -338,11 +388,12 @@ footer{padding:28px 0;border-top:1px solid var(--border)}
   <div class="mob-menu-links">
     <a href="#about" class="mob-link">About</a>
     <a href="#services" class="mob-link">Services</a>
+    <a href="#experience" class="mob-link">Experience</a>
     <a href="#projects" class="mob-link">Work</a>
     <a href="#contact" class="mob-link">Contact</a>
   </div>
   <div class="mob-menu-footer">
-    <span>© 2025</span>
+    <span>&copy; 2025</span>
     <button class="icon-btn" id="mobThemeToggle" aria-label="Toggle theme"><svg class="lucide-sm icon-sun" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><svg class="lucide-sm icon-moon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
   </div>
 </div>
@@ -354,6 +405,7 @@ footer{padding:28px 0;border-top:1px solid var(--border)}
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
         <li><a href="#services">Services</a></li>
+        <li><a href="#experience">Experience</a></li>
         <li><a href="#projects">Work</a></li>
         <li><a href="#contact" class="nav-cta">Contact</a></li>
       </ul>
@@ -365,15 +417,15 @@ footer{padding:28px 0;border-top:1px solid var(--border)}
 
 <section class="hero">
   <div class="container">
-    <div class="hero-name rv"><span class="dim">Yasir</span><br>Hameed</div>
-    <div class="hero-meta rv rv-d1">
+    <div class="hero-name" id="heroName"></div>
+    <div class="hero-meta rv">
       <span class="hero-sub">Web Developer & Designer</span>
       <span class="hero-dot"></span>
       <span class="hero-location">Ambedkar Nagar, India</span>
     </div>
-    <div class="hero-line rv rv-d2"></div>
-    <p class="hero-desc rv rv-d2">I design and build digital experiences that live at the intersection of technology, creativity, and purpose.</p>
-    <div class="hero-btns rv rv-d3">
+    <div class="hero-line rv rv-d1"></div>
+    <p class="hero-desc rv rv-d1">I design and build digital experiences that live at the intersection of technology, creativity, and purpose.</p>
+    <div class="hero-btns rv rv-d2">
       <a href="#projects" class="btn-fill">View Work <svg class="lucide-sm" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg></a>
       <a href="#contact" class="btn-outline">Get in Touch <svg class="lucide-sm" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
     </div>
@@ -381,14 +433,47 @@ footer{padding:28px 0;border-top:1px solid var(--border)}
   <div class="scroll-hint"><span>Scroll</span><div class="scroll-hint-line"></div></div>
 </section>
 
+<section class="marquee-section">
+  <div class="marquee-track" id="marqueeTrack">
+    <div class="marquee-content">
+      <span class="marquee-item">React <span class="dot"></span></span>
+      <span class="marquee-item">Next.js <span class="dot"></span></span>
+      <span class="marquee-item">TypeScript <span class="dot"></span></span>
+      <span class="marquee-item">Node.js <span class="dot"></span></span>
+      <span class="marquee-item">Python <span class="dot"></span></span>
+      <span class="marquee-item">PostgreSQL <span class="dot"></span></span>
+      <span class="marquee-item">Docker <span class="dot"></span></span>
+      <span class="marquee-item">AWS <span class="dot"></span></span>
+      <span class="marquee-item">AI/ML <span class="dot"></span></span>
+      <span class="marquee-item">UI/UX <span class="dot"></span></span>
+      <span class="marquee-item">FastAPI <span class="dot"></span></span>
+      <span class="marquee-item">MongoDB</span>
+    </div>
+    <div class="marquee-content">
+      <span class="marquee-item">React <span class="dot"></span></span>
+      <span class="marquee-item">Next.js <span class="dot"></span></span>
+      <span class="marquee-item">TypeScript <span class="dot"></span></span>
+      <span class="marquee-item">Node.js <span class="dot"></span></span>
+      <span class="marquee-item">Python <span class="dot"></span></span>
+      <span class="marquee-item">PostgreSQL <span class="dot"></span></span>
+      <span class="marquee-item">Docker <span class="dot"></span></span>
+      <span class="marquee-item">AWS <span class="dot"></span></span>
+      <span class="marquee-item">AI/ML <span class="dot"></span></span>
+      <span class="marquee-item">UI/UX <span class="dot"></span></span>
+      <span class="marquee-item">FastAPI <span class="dot"></span></span>
+      <span class="marquee-item">MongoDB</span>
+    </div>
+  </div>
+</section>
+
 <section id="about" class="section-gap">
   <div class="container">
     <div class="section-label rv">About</div>
-    <h2 class="section-title rv">Building at the edge<br>of code & creativity</h2>
+    <h2 class="section-title rv">Building at the edge<br>of code &amp; creativity</h2>
     <div class="about-grid">
       <div>
-        <p class="about-text rv">I'm <strong>Yasir Hameed</strong> — a web developer and designer from Ambedkar Nagar, India. For over three years I've been crafting digital experiences for businesses, startups, and creators who refuse to settle for ordinary.</p>
-        <p class="about-text rv">I believe the best technology is invisible. Whether it's a website, a web app, or an AI-powered tool — if it feels like magic, I've done my job. Currently building <strong>StartElio</strong> and pursuing my BA at TNPG College.</p>
+        <p class="about-text rv">I'm <strong>Yasir Hameed</strong> &mdash; a web developer and designer from Ambedkar Nagar, India. For over three years I've been crafting digital experiences for businesses, startups, and creators who refuse to settle for ordinary.</p>
+        <p class="about-text rv">I believe the best technology is invisible. Whether it's a website, a web app, or an AI-powered tool &mdash; if it feels like magic, I've done my job. Currently building <strong>StartElio</strong> and pursuing my BA at TNPG College.</p>
         <div class="about-tags rv">
           <span class="about-tag">React</span>
           <span class="about-tag">Next.js</span>
@@ -415,24 +500,62 @@ footer{padding:28px 0;border-top:1px solid var(--border)}
     <div class="svc-list">
       <a href="#contact" class="svc-item rv">
         <span class="svc-num">01</span>
-        <div><h3>Website Design</h3><p>Custom-designed websites that capture your brand — from portfolios to business sites. Every pixel intentional.</p></div>
+        <div><h3>Website Design</h3><p>Custom-designed websites that capture your brand &mdash; from portfolios to business sites. Every pixel intentional.</p></div>
         <svg class="lucide-md svc-arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a>
       <a href="#contact" class="svc-item rv rv-d1">
         <span class="svc-num">02</span>
-        <div><h3>Web Applications</h3><p>Full-stack apps built for scale — dashboards, SaaS platforms, tools, and systems that actually perform.</p></div>
+        <div><h3>Web Applications</h3><p>Full-stack apps built for scale &mdash; dashboards, SaaS platforms, tools, and systems that actually perform.</p></div>
         <svg class="lucide-md svc-arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a>
       <a href="#contact" class="svc-item rv rv-d2">
         <span class="svc-num">03</span>
-        <div><h3>AI Integration</h3><p>Smart features for your product — chatbots, content generation, automation, and intelligence baked in.</p></div>
+        <div><h3>AI Integration</h3><p>Smart features for your product &mdash; chatbots, content generation, automation, and intelligence baked in.</p></div>
         <svg class="lucide-md svc-arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a>
       <a href="#contact" class="svc-item rv rv-d3">
         <span class="svc-num">04</span>
-        <div><h3>E-Commerce</h3><p>Online stores that sell — secure payments, inventory management, and experiences that convert.</p></div>
+        <div><h3>E-Commerce</h3><p>Online stores that sell &mdash; secure payments, inventory management, and experiences that convert.</p></div>
         <svg class="lucide-md svc-arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a>
+    </div>
+  </div>
+</section>
+
+<section id="experience" class="section-gap">
+  <div class="container">
+    <div class="section-label rv">Experience</div>
+    <h2 class="section-title rv">Where I've worked</h2>
+    <p class="section-desc rv">Building digital products and solving real problems across the stack.</p>
+    <div class="timeline">
+      <div class="timeline-item rv">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">2022 &mdash; Present</div>
+        <h3>Full Stack Developer</h3>
+        <div class="timeline-role">Freelance / Self-Employed</div>
+        <div class="timeline-desc">Building custom web applications for clients worldwide. Delivering scalable solutions with React/Next.js frontends, Node.js backends, and cloud deployments on AWS. Integrating AI features and managing end-to-end project lifecycles.</div>
+        <div class="timeline-tags">
+          <span>React</span>
+          <span>Next.js</span>
+          <span>Node.js</span>
+          <span>Python</span>
+          <span>AWS</span>
+          <span>PostgreSQL</span>
+        </div>
+      </div>
+      <div class="timeline-item rv rv-d1">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">2023 &mdash; Present</div>
+        <h3>Founder &amp; Developer</h3>
+        <div class="timeline-role">StartElio</div>
+        <div class="timeline-desc">Building an AI-powered tools platform that helps developers and businesses automate workflows, generate content, and boost productivity with smart features.</div>
+        <div class="timeline-tags">
+          <span>Next.js</span>
+          <span>TypeScript</span>
+          <span>AI APIs</span>
+          <span>Fastify</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -472,7 +595,7 @@ footer{padding:28px 0;border-top:1px solid var(--border)}
 
 <footer>
   <div class="container ft">
-    <div class="ft-l">© 2025 Yasir Hameed</div>
+    <div class="ft-l">&copy; 2025 Yasir Hameed</div>
     <div class="ft-r">
       <a href="https://github.com/ysr-hameed" target="_blank">GitHub</a>
       <a href="https://www.linkedin.com/in/yasir-hameed-59b70b36b" target="_blank">LinkedIn</a>
@@ -491,6 +614,49 @@ footer{padding:28px 0;border-top:1px solid var(--border)}
 <button class="back-top" id="backTop" aria-label="Back to top"><svg class="lucide-md" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></button>
 
 <script>
+// Lenis smooth scroll
+const lenis = new Lenis({duration:1.2,easing:t=>Math.min(1,1.001-Math.pow(2,-10*t))});
+function raf(t){lenis.raf(t);requestAnimationFrame(raf)}
+requestAnimationFrame(raf);
+
+// Cursor follower
+const cursorGlow=document.getElementById('cursorGlow');
+if(cursorGlow&&matchMedia('(hover:hover)').matches){
+  let mx=0,my=0,cx=0,cy=0;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursorGlow.classList.remove('hidden')});
+  document.addEventListener('mouseleave',()=>cursorGlow.classList.add('hidden'));
+  document.addEventListener('mouseenter',()=>cursorGlow.classList.remove('hidden'));
+  function cursorAnim(){cx+=(mx-cx)*0.08;cy+=(my-cy)*0.08;cursorGlow.style.left=cx+'px';cursorGlow.style.top=cy+'px';requestAnimationFrame(cursorAnim)}
+  cursorAnim();
+}
+
+// Magnetic buttons
+document.querySelectorAll('.btn-fill,.btn-outline,.form-btn,.nav-cta').forEach(btn=>{
+  btn.addEventListener('mousemove',function(e){
+    const r=this.getBoundingClientRect();
+    const x=e.clientX-r.left-r.width/2;
+    const y=e.clientY-r.top-r.height/2;
+    this.style.transform='translate('+x*0.2+'px,'+y*0.2+'px)'
+  });
+  btn.addEventListener('mouseleave',function(){this.style.transform=''});
+});
+
+// 3D tilt on project media
+document.addEventListener('mouseover',function(e){
+  const m=e.target.closest('.proj-media');
+  if(!m)return;
+  let mounted=m._tilt;
+  if(mounted)return;
+  m._tilt=true;
+  m.addEventListener('mousemove',function(e){
+    const r=this.getBoundingClientRect();
+    const x=(e.clientX-r.left)/r.width;
+    const y=(e.clientY-r.top)/r.height;
+    const tilt=8;
+    this.style.transform='perspective(1000px) rotateY('+((x-0.5)*tilt)+'deg) rotateX('+((0.5-y)*tilt)+'deg)'
+  });
+  m.addEventListener('mouseleave',function(){this.style.transform='perspective(1000px) rotateY(0deg) rotateX(0deg)'});
+},{passive:true});
 
 // Mobile menu
 const menuBtn=document.getElementById('menuBtn');
@@ -505,31 +671,45 @@ document.querySelectorAll('.mob-link').forEach(a=>{a.addEventListener('click',cl
 // Nav scroll + scroll progress
 const nav=document.getElementById('nav');
 const scrollProgress=document.getElementById('scrollProgress');
-window.addEventListener('scroll',()=>{
-  nav.classList.toggle('scrolled',window.scrollY>60);
-  const h=document.documentElement.scrollHeight-window.innerHeight;
-  scrollProgress.style.width=h>0?(window.scrollY/h*100)+'%':'0';
+lenis.on('scroll',({scroll:h,limit:l})=>{
+  nav.classList.toggle('scrolled',h>60);
+  scrollProgress.style.width=l>0?(h/l*100)+'%':'0';
 });
 
 // Back to top
 const backTop=document.getElementById('backTop');
-window.addEventListener('scroll',()=>{backTop.classList.toggle('visible',window.scrollY>400)});
-backTop.addEventListener('click',()=>{window.scrollTo({top:0,behavior:'smooth'})});
+lenis.on('scroll',({scroll:h})=>{backTop.classList.toggle('visible',h>400)});
+backTop.addEventListener('click',()=>{lenis.scrollTo(0)});
 
 // Reveal
 const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis')})},{threshold:0.1});
 document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
 
-// Smooth scroll
-document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',function(e){e.preventDefault();const t=document.querySelector(this.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth'})})});
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',function(e){e.preventDefault();const t=document.querySelector(this.getAttribute('href'));if(t)lenis.scrollTo(t)})});
+
+// Animated text reveal
+(function(){
+  const el=document.getElementById('heroName');
+  if(!el)return;
+  const text='Yasir Hameed';
+  const dimLen=5;
+  let html='';
+  for(let i=0;i<text.length;i++){
+    if(i===dimLen){html+='<span class="br"></span>'}
+    const ch=text[i]===' '?' ':'<span class="char" style="animation-delay:'+(0.04*i)+'s">'+text[i]+'</span>';
+    html+=ch;
+  }
+  el.innerHTML=html;
+})();
 
 // Projects data
 function getTheme(){return document.documentElement.getAttribute('data-theme')||'light'}
 function isDarkMode(){return getTheme()==='dark'}
 const projects=[
-  {tag:'AI Platform',title:'StartElio',desc:'An AI-powered tools platform that helps developers and businesses automate workflows, generate content, and boost productivity with smart features.',tech:['Next.js','TypeScript','AI APIs','Fastify'],links:[{l:'Live Demo',u:'https://startelio.in',i:'external-link'},{l:'GitHub',u:'https://github.com/ysr-hameed',i:'github'}],mediaDark:'<img src="images/startelio-dark.png" alt="StartElio" style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block">',mediaLight:'<img src="images/startelio-light.png" alt="StartElio" style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block">',mediaDarkImg:'images/startelio-dark.png',mediaLightImg:'images/startelio-light.png'},
-  {tag:'Cloud Storage',title:'Hypz Cloud',desc:'A secure cloud storage platform with an easy-to-use interface. Store, manage, and share files with CDN support and analytics.',tech:['React','Node.js','PostgreSQL','AWS S3'],links:[{l:'Source',u:'https://github.com/ysr-hameed/hypz-cloud-private',i:'github'}],mediaDark:'<img src="images/hypz-cloud-storage-dark.png" alt="Hypz Cloud" style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block">',mediaLight:'<img src="images/hypz-cloud-storage-light.png" alt="Hypz Cloud" style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block">',mediaDarkImg:'images/hypz-cloud-storage-dark.png',mediaLightImg:'images/hypz-cloud-storage-light.png'},
-  {tag:'Security',title:'Secure File Sharing',desc:'A privacy-focused file sharing platform with end-to-end encryption and zero-knowledge architecture for complete data privacy.',tech:['React','Fastify','Encryption','JWT'],links:[{l:'Source',u:'https://github.com/ysr-hameed/online-secure-file-sharing',i:'github'}],mediaDark:'<img src="images/secure-file-sharing-dark.png" alt="Secure File Sharing" style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block">',mediaLight:'<img src="images/secure-file-sharing-light.png" alt="Secure File Sharing" style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block">',mediaDarkImg:'images/secure-file-sharing-dark.png',mediaLightImg:'images/secure-file-sharing-light.png'}
+  {tag:'AI Platform',title:'StartElio',desc:'An AI-powered tools platform that helps developers and businesses automate workflows, generate content, and boost productivity with smart features.',tech:['Next.js','TypeScript','AI APIs','Fastify'],links:[{l:'Live Demo',u:'https://startelio.in',i:'external-link'},{l:'GitHub',u:'https://github.com/ysr-hameed',i:'github'}],mediaDark:'<img loading="lazy" src="images/startelio-dark.webp" alt="StartElio" style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block">',mediaLight:'<img loading="lazy" src="images/startelio-light.webp" alt="StartElio" style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block">',mediaDarkImg:'images/startelio-dark.webp',mediaLightImg:'images/startelio-light.webp'},
+  {tag:'Cloud Storage',title:'Hypz Cloud',desc:'A secure cloud storage platform with an easy-to-use interface. Store, manage, and share files with CDN support and analytics.',tech:['React','Node.js','PostgreSQL','AWS S3'],links:[{l:'Source',u:'https://github.com/ysr-hameed/hypz-cloud-private',i:'github'}],mediaDark:'<img loading="lazy" src="images/hypz-cloud-storage-dark.webp" alt="Hypz Cloud" style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block">',mediaLight:'<img loading="lazy" src="images/hypz-cloud-storage-light.webp" alt="Hypz Cloud" style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block">',mediaDarkImg:'images/hypz-cloud-storage-dark.webp',mediaLightImg:'images/hypz-cloud-storage-light.webp'},
+  {tag:'Security',title:'Secure File Sharing',desc:'A privacy-focused file sharing platform with end-to-end encryption and zero-knowledge architecture for complete data privacy.',tech:['React','Fastify','Encryption','JWT'],links:[{l:'Source',u:'https://github.com/ysr-hameed/online-secure-file-sharing',i:'github'}],mediaDark:'<img loading="lazy" src="images/secure-file-sharing-dark.webp" alt="Secure File Sharing" style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block">',mediaLight:'<img loading="lazy" src="images/secure-file-sharing-light.webp" alt="Secure File Sharing" style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block">',mediaDarkImg:'images/secure-file-sharing-dark.webp',mediaLightImg:'images/secure-file-sharing-light.webp'}
 ];
 
 // Render projects
@@ -561,6 +741,10 @@ function renderProjects(){
     projList.appendChild(block);
     block.querySelectorAll('.rv').forEach(el=>obs.observe(el));
   });
+  document.querySelectorAll('.proj-media img').forEach(img=>{
+    if(img.complete)img.classList.add('loaded');
+    else img.addEventListener('load',()=>img.classList.add('loaded'));
+  });
 }
 renderProjects();
 
@@ -568,7 +752,7 @@ renderProjects();
 const modal=document.getElementById('modal');
 const modalBody=document.getElementById('modalBody');
 const modalImgWrap=document.getElementById('modalImgWrap');
-function getModalMedia(p){const src=isDarkMode()?(p.mediaDarkImg||p.mediaLightImg):(p.mediaLightImg||p.mediaDarkImg);return src?'<img src="'+src+'" alt="'+p.title+' Full" style="width:100%;display:block;cursor:zoom-in" onclick="this.style.objectFit=this.style.objectFit===\'contain\'?\'cover\':\'contain\';this.style.cursor=this.style.cursor===\'zoom-out\'?\'zoom-in\':\'zoom-out\'">':p.modalMedia||p.media}
+function getModalMedia(p){const src=isDarkMode()?(p.mediaDarkImg||p.mediaLightImg):(p.mediaLightImg||p.mediaDarkImg);return src?'<img loading="lazy" src="'+src+'" alt="'+p.title+' Full" style="width:100%;display:block;cursor:zoom-in" onclick="this.style.objectFit=this.style.objectFit===\'contain\'?\'cover\':\'contain\';this.style.cursor=this.style.cursor===\'zoom-out\'?\'zoom-in\':\'zoom-out\'">':p.modalMedia||p.media}
 function openModal(i){
   const p=projects[i];
   const tech=p.tech.map(t=>`<span>${t}</span>`).join('');
