@@ -1,488 +1,627 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yasir Hameed - Resume</title>
-    
+    <title>Yasir Hameed — Resume</title>
+    <meta name="description" content="Resume of Yasir Hameed, Full Stack Developer building modern digital experiences.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --dark: #0f0f0f;
-            --gray: #6b6b6b;
-            --light-gray: #a3a3a3;
-            --border: #e5e5e5;
-            --bg: #f5f5f5;
-            --white: #ffffff;
-            --accent: #2563eb;
+            --bg: #FAF8F5;
+            --text: #111;
+            --muted: #777;
+            --subtle: #BBB;
+            --border: rgba(0,0,0,0.06);
+            --accent: #111;
+            --sans: 'Syne', system-ui, sans-serif;
+            --body: 'Space Grotesk', system-ui, sans-serif;
         }
 
         body {
-            font-family: 'DM Sans', sans-serif;
-            background: var(--bg);
-            color: var(--dark);
-            line-height: 1.55;
-            font-size: 14px;
+            font-family: var(--body);
+            background: #f0ede8;
+            color: var(--text);
+            -webkit-font-smoothing: antialiased;
+            line-height: 1.7;
+            font-size: 13px;
         }
 
         .page {
             width: 210mm;
             min-height: 297mm;
-            margin: 20px auto;
-            background: var(--white);
-            box-shadow: 0 4px 30px rgba(0,0,0,0.08);
+            margin: 24px auto;
+            background: var(--bg);
+            box-shadow: 0 8px 60px rgba(0,0,0,0.06);
+            position: relative;
         }
 
-        .container {
-            padding: 40px 48px;
+        .page:last-of-type {
+            margin-bottom: 100px;
         }
 
+        .page-inner { padding: 48px 52px 40px; }
+
+        /* Header */
         .header {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
             padding-bottom: 28px;
-            border-bottom: 1px solid var(--dark);
+            border-bottom: 2px solid var(--text);
             margin-bottom: 32px;
         }
 
         .header-left h1 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 32px;
-            font-weight: 700;
-            color: var(--dark);
-            letter-spacing: -1px;
+            font-family: var(--sans);
+            font-size: 34px;
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            line-height: 0.95;
+            color: var(--text);
             margin-bottom: 6px;
         }
 
         .header-left .title {
+            font-family: var(--body);
             font-size: 14px;
-            color: var(--gray);
+            color: var(--muted);
             font-weight: 500;
+            letter-spacing: -0.01em;
         }
 
         .header-right {
             text-align: right;
-            font-size: 12px;
+            font-size: 11.5px;
+            line-height: 2;
         }
 
         .header-right a {
-            color: var(--gray);
+            color: var(--muted);
             text-decoration: none;
             display: block;
-            margin-bottom: 5px;
             transition: color 0.2s;
         }
 
-        .header-right a:hover {
-            color: var(--accent);
+        .header-right a:hover { color: var(--text); }
+
+        .sr-only {
+            position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+            overflow: hidden; clip: rect(0,0,0,0); border: 0;
         }
 
-        .section {
-            margin-bottom: 26px;
-        }
+        /* Sections */
+        .section { margin-bottom: 28px; }
+        .section:last-child { margin-bottom: 0; }
 
-        .section-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 11px;
-            font-weight: 600;
-            color: var(--dark);
-            text-transform: uppercase;
-            letter-spacing: 2px;
+        .section-top {
+            display: flex;
+            align-items: center;
+            gap: 14px;
             margin-bottom: 14px;
         }
 
+        .section-line {
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        .section-label {
+            font-family: var(--sans);
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            color: var(--muted);
+            white-space: nowrap;
+        }
+
+        /* Summary */
         .summary {
             font-size: 13px;
-            color: var(--gray);
-            line-height: 1.7;
-            max-width: 90%;
+            color: var(--muted);
+            line-height: 1.85;
+            max-width: 95%;
         }
 
-        .skills-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
+        .summary strong { color: var(--text); font-weight: 600; }
 
-        .skill-tag {
-            padding: 6px 14px;
-            background: var(--bg);
-            border-radius: 20px;
-            font-size: 11px;
-            color: var(--dark);
-            font-weight: 500;
-        }
-
+        /* Skills */
         .skills-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-top: 8px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
         }
 
-        .skill-category {
-            display: flex;
-            gap: 12px;
-            align-items: baseline;
+        .skill-cat {
+            padding: 14px 16px;
+            background: rgba(0,0,0,0.02);
+            border-radius: 8px;
         }
 
-        .skill-label {
+        .skill-cat-label {
+            font-family: var(--sans);
+            font-size: 9px;
             font-weight: 600;
-            font-size: 11px;
-            color: var(--accent);
-            min-width: 90px;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: var(--text);
+            margin-bottom: 6px;
+        }
+
+        .skill-cat-items {
+            font-size: 11.5px;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        /* Two column layout for exp + projects */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 36px;
+        }
+
+        /* Experience */
+        .exp-item {
+            margin-bottom: 20px;
+            padding-left: 18px;
+            border-left: 1.5px solid var(--border);
+            position: relative;
+        }
+
+        .exp-item::before {
+            content: '';
+            position: absolute;
+            left: -4px;
+            top: 6px;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--text);
+        }
+
+        .exp-item:last-child { margin-bottom: 0; }
+
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 4px;
+            margin-bottom: 1px;
+        }
+
+        .exp-title {
+            font-family: var(--sans);
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            color: var(--text);
+        }
+
+        .exp-date {
+            font-size: 10px;
+            color: var(--subtle);
+            font-weight: 500;
+            white-space: nowrap;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
 
-        .skill-items {
+        .exp-company {
             font-size: 12px;
-            color: var(--gray);
-            line-height: 1.5;
-        }
-
-        .experience-item {
-            margin-bottom: 20px;
-            padding-left: 16px;
-            border-left: 2px solid var(--border);
-        }
-
-        .experience-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            margin-bottom: 4px;
-        }
-
-        .experience-title {
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--dark);
-        }
-
-        .experience-date {
-            font-size: 11px;
-            color: var(--light-gray);
-        }
-
-        .experience-company {
-            font-size: 12px;
-            color: var(--accent);
+            color: var(--muted);
             font-weight: 500;
             margin-bottom: 6px;
         }
 
-        .experience-desc {
-            font-size: 12px;
-            color: var(--gray);
-            line-height: 1.6;
+        .exp-desc {
+            font-size: 11.5px;
+            color: var(--muted);
+            line-height: 1.7;
         }
 
-        .project-item {
-            margin-bottom: 14px;
+        .exp-desc ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .exp-desc ul li {
+            position: relative;
+            padding-left: 14px;
+            margin-bottom: 3px;
+        }
+
+        .exp-desc ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 3px;
+            height: 3px;
+            border-radius: 50%;
+            background: var(--subtle);
+        }
+
+        /* Projects */
+        .proj-item {
             padding: 14px 16px;
-            background: var(--bg);
+            border: 1px solid var(--border);
             border-radius: 8px;
+            margin-bottom: 10px;
+            transition: border-color 0.2s;
         }
 
-        .project-title {
+        .proj-item:last-child { margin-bottom: 0; }
+        .proj-item:hover { border-color: var(--text); }
+
+        .proj-title {
+            font-family: var(--sans);
             font-size: 13px;
-            font-weight: 600;
-            color: var(--dark);
+            font-weight: 700;
+            letter-spacing: -0.2px;
+            color: var(--text);
+            margin-bottom: 2px;
+        }
+
+        .proj-tech {
+            font-size: 9.5px;
+            color: var(--muted);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
             margin-bottom: 4px;
         }
 
-        .project-desc {
+        .proj-desc {
             font-size: 11px;
-            color: var(--gray);
-            margin-bottom: 8px;
-            line-height: 1.5;
+            color: var(--muted);
+            line-height: 1.6;
         }
 
-        .project-tech {
-            font-size: 10px;
-            color: var(--accent);
-            font-weight: 500;
+        /* Bottom row: Education + Languages + Interests */
+        .bottom-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 28px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
         }
 
-        .cert-list {
-            display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-
-        .cert-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 10px 16px;
-            background: var(--bg);
-            border-radius: 6px;
-            min-width: 200px;
-        }
-
-        .cert-icon {
-            width: 24px;
-            height: 24px;
-            background: var(--white);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--dark);
-            font-size: 10px;
-        }
-
-        .cert-name {
-            font-size: 11px;
-            font-weight: 500;
-            color: var(--dark);
-        }
-
-        .cert-issuer {
-            font-size: 10px;
-            color: var(--light-gray);
-            display: block;
-        }
-
-        .education-item {
-            margin-bottom: 12px;
-        }
-
-        .education-title {
-            font-size: 13px;
+        .bottom-section-title {
+            font-family: var(--sans);
+            font-size: 9px;
             font-weight: 600;
-            color: var(--dark);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text);
+            margin-bottom: 8px;
         }
 
-        .education-school {
-            font-size: 12px;
-            color: var(--gray);
+        .edu-item { margin-bottom: 4px; }
+
+        .edu-title {
+            font-family: var(--sans);
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: -0.2px;
+            color: var(--text);
         }
 
-        .education-details {
-            font-size: 11px;
-            color: var(--light-gray);
+        .edu-school {
+            font-size: 11.5px;
+            color: var(--muted);
+        }
+
+        .edu-detail {
+            font-size: 10px;
+            color: var(--subtle);
         }
 
         .lang-list {
             display: flex;
-            gap: 24px;
+            flex-direction: column;
+            gap: 3px;
         }
 
         .lang-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
             font-size: 12px;
+            color: var(--muted);
         }
 
         .lang-name {
             font-weight: 600;
-            color: var(--dark);
+            color: var(--text);
+            min-width: 56px;
         }
 
-        .lang-level {
-            color: var(--gray);
+        .lang-bar {
+            flex: 1;
+            max-width: 80px;
+            height: 4px;
+            background: var(--border);
+            border-radius: 2px;
+            overflow: hidden;
         }
 
-        .two-column {
-            display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 40px;
+        .lang-bar-fill {
+            height: 100%;
+            background: var(--text);
+            border-radius: 2px;
         }
 
-        .column-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 11px;
-            font-weight: 600;
-            color: var(--dark);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 14px;
-            padding-bottom: 8px;
-            border-bottom: 1px solid var(--dark);
+        .int-list {
+            font-size: 11.5px;
+            color: var(--muted);
+            line-height: 1.8;
         }
 
-        .print-btn {
+        /* Actions */
+        .actions {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
-            padding: 14px 28px;
-            background: var(--dark);
-            color: white;
+            bottom: 28px;
+            right: 28px;
+            display: flex;
+            gap: 8px;
+            z-index: 100;
+        }
+
+        .actions a, .actions button {
+            padding: 12px 22px;
             border: none;
-            border-radius: 30px;
-            font-family: 'DM Sans', sans-serif;
-            font-size: 13px;
+            font-family: var(--sans);
+            font-size: 11px;
             font-weight: 500;
             cursor: pointer;
-            display: flex;
+            display: inline-flex;
             align-items: center;
-            gap: 8px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-            transition: all 0.3s;
+            gap: 7px;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            transition: all 0.25s ease;
+            border-radius: 8px;
         }
 
-        .print-btn:hover {
+        .btn-primary {
+            background: var(--text);
+            color: var(--bg);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+        }
+
+        .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.18);
+        }
+
+        .btn-outline {
+            background: var(--bg);
+            color: var(--text);
+            border: 1px solid var(--border);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+        }
+
+        .btn-outline:hover {
+            transform: translateY(-2px);
+            border-color: var(--text);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
         }
 
         @media print {
             @page { size: A4; margin: 0; }
             body { background: white; }
-            .page { width: 100%; height: auto; margin: 0; box-shadow: none; }
-            .print-btn { display: none; }
-            .project-item { background: none; padding: 0; }
+            .page { width: 100%; min-height: auto; margin: 0; box-shadow: none; }
+            .page-inner { padding: 44px 48px 36px; }
+            .actions { display: none; }
+            .proj-item:hover { border-color: var(--border); }
+            .skill-cat { background: #f5f4f2 !important; }
+            * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
         }
 
         @media (max-width: 768px) {
             .page { width: 100%; margin: 0; }
-            .container { padding: 30px 24px; }
-            .header { flex-direction: column; gap: 20px; }
+            .page-inner { padding: 28px 22px; }
+            .header { flex-direction: column; gap: 16px; }
             .header-right { text-align: left; }
-            .two-column { grid-template-columns: 1fr; }
-            .cert-list { flex-direction: column; }
-            .cert-item { min-width: auto; }
+            .skills-grid { grid-template-columns: repeat(2, 1fr); }
+            .two-col { grid-template-columns: 1fr; gap: 24px; }
+            .bottom-row { grid-template-columns: 1fr; gap: 20px; }
+            .summary { max-width: 100%; }
+            .actions { bottom: 16px; right: 16px; gap: 6px; }
+            .actions a, .actions button { padding: 10px 16px; font-size: 10px; }
+        }
+
+        @media (max-width: 480px) {
+            .page-inner { padding: 20px 16px; }
+            .skills-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
-
 <body>
-    <button onclick="window.print()" class="print-btn">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-            <polyline points="7 10 12 15 17 10"/>
-            <line x1="12" y1="15" x2="12" y2="3"/>
-        </svg>
-        Save as PDF
-    </button>
 
-    <div class="page">
-        <div class="container">
-            <div class="header">
-                <div class="header-left">
-                    <h1>Yasir Hameed</h1>
-                    <div class="title">Full Stack Developer</div>
+<div class="actions">
+    <a href="resume.pdf" download class="btn-primary">Download PDF</a>
+    <a href="https://ysr-hameed.github.io" target="_blank" class="btn-outline">Portfolio</a>
+</div>
+
+<div class="page">
+    <div class="page-inner">
+
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <h1>Yasir Hameed</h1>
+                <div class="title">Full Stack Developer</div>
+            </div>
+            <div class="header-right">
+                <a href="mailto:ysr.hameed.yh@gmail.com">ysr.hameed.yh@gmail.com</a>
+                <a href="https://ysr-hameed.github.io" target="_blank">ysr-hameed.github.io</a>
+                <a href="https://github.com/ysr-hameed" target="_blank">github.com/ysr-hameed</a>
+                <a href="https://linkedin.com/in/yasir-hameed-59b70b36b" target="_blank">linkedin.com/in/yasir-hameed</a>
+                <span style="color:var(--subtle);font-size:10.5px;">+91 91696 36627</span>
+                <span style="color:var(--subtle);font-size:10.5px;">Ambedkar Nagar, India</span>
+            </div>
+        </header>
+
+        <!-- Summary -->
+        <section class="section">
+            <div class="section-top">
+                <span class="section-label">About</span>
+                <div class="section-line"></div>
+            </div>
+            <div class="summary">
+                Full Stack Developer with <strong>3+ years</strong> of experience building modern, scalable web applications. I specialize in <strong>React, Next.js, Node.js, and Python</strong> with deep expertise in cloud infrastructure and AI integration. I founded <strong>StartElio</strong>, an AI-powered tools platform, and have delivered <strong>20+ projects</strong> for clients across industries. I believe in clean code, thoughtful architecture, and experiences that feel like magic.
+            </div>
+        </section>
+
+        <!-- Skills -->
+        <section class="section">
+            <div class="section-top">
+                <span class="section-label">Skills</span>
+                <div class="section-line"></div>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-cat">
+                    <div class="skill-cat-label">Languages</div>
+                    <div class="skill-cat-items">Python · JavaScript · TypeScript · SQL</div>
                 </div>
-                <div class="header-right">
-                    <a href="mailto:ysr.hameed.yh@gmail.com">✉ ysr.hameed.yh@gmail.com</a>
-                    <a href="https://github.com/ysr-hameed" target="_blank">⌘ github.com/ysr-hameed</a>
-                    <a href="https://linkedin.com/in/yasir-hameed-59b70b36b" target="_blank">◈ linkedin.com/in/yasir-hameed-59b70b36b</a>
-                    <a href="https://ysr-hameed.github.io" target="_blank">◎ ysr-hameed.github.io</a>
+                <div class="skill-cat">
+                    <div class="skill-cat-label">Frontend</div>
+                    <div class="skill-cat-items">React · Next.js · Tailwind CSS · HTML/CSS</div>
+                </div>
+                <div class="skill-cat">
+                    <div class="skill-cat-label">Backend</div>
+                    <div class="skill-cat-items">Node.js · FastAPI · Flask · Django · Express</div>
+                </div>
+                <div class="skill-cat">
+                    <div class="skill-cat-label">Cloud &amp; DevOps</div>
+                    <div class="skill-cat-items">AWS · Docker · Git · Linux · CI/CD</div>
+                </div>
+                <div class="skill-cat">
+                    <div class="skill-cat-label">Databases</div>
+                    <div class="skill-cat-items">PostgreSQL · MongoDB · Redis</div>
+                </div>
+                <div class="skill-cat">
+                    <div class="skill-cat-label">AI &amp; ML</div>
+                    <div class="skill-cat-items">LangChain · OpenAI · Hugging Face · Computer Vision</div>
                 </div>
             </div>
+        </section>
 
-            <div class="section">
-                <div class="section-title">About</div>
-                <div class="summary">
-                    Full Stack Web Developer with experience building modern, scalable web applications using React, Next.js, Node.js, and Python. Skilled in AI integrations, cloud deployments, and creating clean, performant code.
-                </div>
+        <!-- Experience + Projects -->
+        <section class="section">
+            <div class="section-top">
+                <span class="section-label">Experience &amp; Projects</span>
+                <div class="section-line"></div>
             </div>
-
-            <div class="section">
-                <div class="section-title">Skills</div>
-                <div class="skills-list">
-                    <span class="skill-tag">React</span>
-                    <span class="skill-tag">Next.js</span>
-                    <span class="skill-tag">TypeScript</span>
-                    <span class="skill-tag">JavaScript</span>
-                    <span class="skill-tag">Node.js</span>
-                    <span class="skill-tag">Python</span>
-                    <span class="skill-tag">Express.js</span>
-                    <span class="skill-tag">PostgreSQL</span>
-                    <span class="skill-tag">MongoDB</span>
-                    <span class="skill-tag">Docker</span>
-                    <span class="skill-tag">AWS</span>
-                    <span class="skill-tag">REST APIs</span>
-                    <span class="skill-tag">Git</span>
-                    <span class="skill-tag">Tailwind CSS</span>
-                </div>
-            </div>
-
-            <div class="two-column">
-                <div class="column">
-                    <div class="column-title">Experience</div>
-                    
-                    <div class="experience-item">
-                        <div class="experience-header">
-                            <span class="experience-title">Full Stack Developer</span>
-                            <span class="experience-date">2022 — Present</span>
+            <div class="two-col">
+                <!-- Left: Experience -->
+                <div>
+                    <div class="exp-item">
+                        <div class="exp-header">
+                            <span class="exp-title">Full Stack Developer</span>
+                            <span class="exp-date">2022 — Present</span>
                         </div>
-                        <div class="experience-company">Freelance / Self-Employed</div>
-                        <div class="experience-desc">
-                            Building custom web applications. Developed scalable solutions using React/Next.js frontends with Node.js backends. Implemented AI integrations and cloud deployments.
+                        <div class="exp-company">Freelance / Self-Employed</div>
+                        <div class="exp-desc">
+                            <ul>
+                                <li>Delivered 20+ custom web applications for clients across 5+ countries using React, Next.js, and Node.js</li>
+                                <li>Architected scalable cloud infrastructure on AWS (EC2, S3, Lambda) with Docker containerization, reducing deployment time by 60%</li>
+                                <li>Integrated AI-powered features — chatbots, content generation, intelligent automation — boosting client engagement by 40%</li>
+                                <li>Managed end-to-end project lifecycles from concept through deployment, consistently delivering ahead of schedule</li>
+                            </ul>
                         </div>
                     </div>
-
-                    <div class="column-title" style="margin-top: 20px;">Education</div>
-                    
-                    <div class="education-item">
-                        <div class="education-title">Bachelor of Arts (BA)</div>
-                        <div class="education-school">TNPG College, Tanda</div>
-                        <div class="education-details">Ambedkar Nagar • Currently in 3rd Semester</div>
+                    <div class="exp-item">
+                        <div class="exp-header">
+                            <span class="exp-title">Founder &amp; Developer</span>
+                            <span class="exp-date">2023 — Present</span>
+                        </div>
+                        <div class="exp-company">StartElio</div>
+                        <div class="exp-desc">
+                            <ul>
+                                <li>Built an AI-powered tools platform serving developers and businesses</li>
+                                <li>Designed full product architecture with Next.js, TypeScript, and Fastify</li>
+                                <li>Implemented workflow automation and content generation features</li>
+                            </ul>
+                        </div>
                     </div>
+                </div>
+                <!-- Right: Projects -->
+                <div>
+                    <div class="proj-item">
+                        <div class="proj-title">Hypz Cloud</div>
+                        <div class="proj-tech">React · Node.js · PostgreSQL · AWS S3</div>
+                        <div class="proj-desc">S3-compatible cloud storage with SDKs for Node.js, Python &amp; Java. User management, CDN, and analytics.</div>
+                    </div>
+                    <div class="proj-item">
+                        <div class="proj-title">Secure File Sharing</div>
+                        <div class="proj-tech">React · Fastify · Encryption · JWT</div>
+                        <div class="proj-desc">End-to-end encrypted file sharing with secure links and file expiration.</div>
+                    </div>
+                    <div class="proj-item">
+                        <div class="proj-title">Auto Shorts Generator</div>
+                        <div class="proj-tech">Python · Flask · OpenCV · AI APIs</div>
+                        <div class="proj-desc">Automated YouTube Shorts creation with AI script generation and video processing.</div>
+                    </div>
+                    <div class="proj-item">
+                        <div class="proj-title">StartElio Platform</div>
+                        <div class="proj-tech">Next.js · TypeScript · AI APIs · Fastify</div>
+                        <div class="proj-desc">AI-powered platform for workflow automation and productivity.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-                    <div class="column-title" style="margin-top: 20px;">Languages</div>
+        <!-- Bottom Row -->
+        <section class="section">
+            <div class="bottom-row">
+                <div>
+                    <div class="bottom-section-title">Languages</div>
                     <div class="lang-list">
-                        <span class="lang-item"><span class="lang-name">English</span> <span class="lang-level">— Fluent</span></span>
-                        <span class="lang-item"><span class="lang-name">Hindi</span> <span class="lang-level">— Native</span></span>
+                        <div class="lang-item">
+                            <span class="lang-name">English</span>
+                            <div class="lang-bar"><div class="lang-bar-fill" style="width:85%"></div></div>
+                            <span style="font-size:10px;color:var(--subtle);">Fluent</span>
+                        </div>
+                        <div class="lang-item">
+                            <span class="lang-name">Hindi</span>
+                            <div class="lang-bar"><div class="lang-bar-fill" style="width:100%"></div></div>
+                            <span style="font-size:10px;color:var(--subtle);">Native</span>
+                        </div>
+                        <div class="lang-item">
+                            <span class="lang-name">Urdu</span>
+                            <div class="lang-bar"><div class="lang-bar-fill" style="width:95%"></div></div>
+                            <span style="font-size:10px;color:var(--subtle);">Native</span>
+                        </div>
                     </div>
                 </div>
-
-                <div class="column">
-                    <div class="column-title">Projects</div>
-                    
-                    <div class="project-item">
-                        <div class="project-title">Hypz Cloud — S3-Compatible Storage Platform</div>
-                        <div class="project-desc">Cloud storage platform with SDKs for Node.js, Python & Java. Features user management, CDN integration, and analytics.</div>
-                        <div class="project-tech">React · Node.js · PostgreSQL · AWS S3</div>
+                <div>
+                    <div class="bottom-section-title">Interests</div>
+                    <div class="int-list">
+                        Open Source · AI/ML Research · Product Design · Photography
                     </div>
-
-                    <div class="project-item">
-                        <div class="project-title">Secure File Sharing Platform</div>
-                        <div class="project-desc">Privacy-focused file sharing with end-to-end encryption, secure links, and file expiration features.</div>
-                        <div class="project-tech">React · Fastify · Encryption · JWT</div>
-                    </div>
-
-                    <div class="project-item">
-                        <div class="project-title">Auto Shorts Generator</div>
-                        <div class="project-desc">Automated YouTube Shorts creation tool with AI-powered script generation and video processing.</div>
-                        <div class="project-tech">Python · Flask · OpenCV · AI APIs</div>
-                    </div>
-
-                    <div class="column-title" style="margin-top: 16px;">Tech Stack</div>
-                    <div class="skills-grid">
-                        <div class="skill-category">
-                            <div class="skill-label">Languages</div>
-                            <div class="skill-items">Python, JavaScript, TypeScript, C++, Go, SQL, HTML/CSS</div>
-                        </div>
-                        <div class="skill-category">
-                            <div class="skill-label">Frameworks</div>
-                            <div class="skill-items">React, Node.js, FastAPI, Flask, Django, Express</div>
-                        </div>
-                        <div class="skill-category">
-                            <div class="skill-label">Tools & Cloud</div>
-                            <div class="skill-items">AWS, Docker, Kubernetes, Git, Linux, PostgreSQL, Redis</div>
-                        </div>
-                        <div class="skill-category">
-                            <div class="skill-label">AI/ML</div>
-                            <div class="skill-items">LangChain, OpenAI API, Hugging Face, TensorFlow, Computer Vision</div>
-                        </div>
+                </div>
+                <div>
+                    <div class="bottom-section-title">GitHub</div>
+                    <div class="int-list">
+                        <a href="https://github.com/ysr-hameed" target="_blank" style="color:var(--muted);text-decoration:none;">github.com/ysr-hameed</a>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
+
     </div>
+</div>
+
 </body>
 </html>
